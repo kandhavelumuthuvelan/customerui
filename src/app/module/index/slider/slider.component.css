@@ -1,0 +1,6 @@
+.carousel-inner img{
+    height: 350px;
+}
+.carousel-control.right,.carousel-control.left{
+    background-image: none;
+}

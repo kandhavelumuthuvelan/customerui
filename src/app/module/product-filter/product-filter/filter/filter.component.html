@@ -1,0 +1,216 @@
+<!-- product category -->
+<section id="aa-product-category">
+  <!-- <div *ngIf="Products?.length  == 0" class="bigContainer1 mt0">
+    <div class="Ecart">
+      <h1>No products available of your search!</h1>
+      <img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart">
+    </div>
+  </div> -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-8 col-md-push-3">
+        <div class="aa-product-catg-content">
+          <div class="aa-product-catg-head">
+            <div class="aa-product-catg-head-left w-100">
+              <!-- <form action="" class="aa-sort-form">
+                <label for="">Sort by</label>
+                <select name="">
+                  <option value="1" selected="Default">Default</option>
+                  <option value="2">Name</option>
+                  <option value="3">Price</option>
+                  <option value="4">Date</option>
+                </select>
+              </form> -->
+              <form action="" class="aa-show-form  w-100 ml-0">
+                <mat-form-field class="w-100">
+                  <input type="text" placeholder="Search by location ex. 'Chennai'" (keydown.enter)="onSearchKeydown()"
+                    matInput [formControl]="search" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option (onSelectionChange)="onSearchSubmit(search.location)" *ngFor="let search of ProductArea"
+                      [value]="search.location">
+                      {{ search.location }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+            </div>
+            <!-- <div class="aa-product-catg-head-right">
+              <a id="grid-catg" href="javascript:void(0)"><span class="fa fa-th"></span></a>
+              <a id="list-catg" href="javascript:void(0)"><span class="fa fa-list"></span></a>
+            </div> -->
+          </div>
+          <div *ngIf="Products?.length  == 0" class="bigContainer1 mt0">
+            <div>
+              <h1>No products available of your search!</h1>
+              <img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart">
+            </div>
+          </div>
+          <div *ngIf="Products?.length  != 0">
+            <div class="aa-product-catg-body" *ngIf="Products?.length  != 0" infiniteScroll [infiniteScrollDistance]="2"
+              [infiniteScrollThrottle]="400" [infiniteScrollDisabled]="false" (scrolled)="LoadMore()">
+              <div class="row">
+                <div class="col-md-4 mb-4" *ngFor="let product of Products">
+                  <article class="entry-item" onclick="">
+                    <div class="entry-thumb">
+                      <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}"> <img width="182" height="268"
+                          src="{{product.imageUrl}}" class="attachment-360x618 size-360x618" alt=""></a>
+                      <div class="right-info">
+                        <span [ngSwitch]="product.category" class="pg">
+                          <span *ngSwitchCase="'Procurement'">
+                            <span *ngIf="product.quantity > 0">In stock</span>
+                            <span *ngIf="product.quantity <= 0">Sold out</span>
+                          </span>
+                          <span *ngSwitchCase="'Design Engineering'">Consulting</span>
+                          <span *ngSwitchCase="'Construction'">Contracting</span>
+                          <span *ngSwitchCase="'Rental Equipments'">Rental</span>
+                        </span>
+                        <div class="entry-time">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="entry-content">
+                      <h4 class="entry-title">{{ product.name }}</h4>
+                      <div class="entry-date">
+                        <span class="pdp-offercost">Cost:</span> <strong class="pdp-price pdp-offercost mr-2">₹
+                          {{ product.cost }}</strong>
+                        <span class="pdp-mrp pdp-originalcost">
+                          <del>₹ {{product.cutcost }}</del>
+                        </span>
+                        <span
+                          class="pdp-discount pdp-originalcost">({{(100-((product.cost/product.cutcost)*100)).toFixed(2)}}%
+                          OFF)</span>
+                      </div>
+                    </div>
+                    <div class="pic-caption open-left" routerLink="/product-detail/{{ product.name }}/{{ product.id }}">
+                      <h4 class="entry-title">
+                        <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}">{{ product.name }}</a>
+                      </h4>
+                      <span [ngSwitch]="product.category" class="pg">
+                        <span *ngSwitchCase="'Procurement'">
+                          <span *ngIf="product.quantity > 0">In stock</span>
+                          <span *ngIf="product.quantity <= 0">Sold out</span>
+                        </span>
+                        <span *ngSwitchCase="'Design Engineering'">Consulting</span>
+                        <span *ngSwitchCase="'Construction'">Contracting</span>
+                        <span *ngSwitchCase="'Rental Equipments'">Rental</span>
+                      </span>
+                      <div class="desc-mv">
+                        <p class="pdp-discount-container">
+                          <span>Price: </span> <strong class="pdp-price mr-2">₹ {{ product.cost }}</strong>
+                          <span class="pdp-mrp">
+                            <del>₹ {{product.cutcost }}</del>
+                          </span>
+                          <span class="pdp-discount">({{(100-((product.cost/product.cutcost)*100)).toFixed(2)}}%
+                            OFF)</span>
+                        </p>
+                        <p><span>Delivery : </span>{{ product.delivery }} days</p>
+                        <p><span>Shipping : </span>₹ {{ product.shippingCost }}</p>
+                        <p><span>Seller : </span>{{ product.seller }}</p>
+                      </div>
+                      <div class="entry-button hover-design">
+                        <a *ngIf="product.category == 'Procurement'" href="javascript:void(0)"
+                          (click)="addToCart(product.id)"><i aria-hidden="true" class="fa fa-shopping-cart"></i>Add to
+                          Cart</a>
+                        <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}">More Details</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-4 col-md-pull-9">
+        <aside class="aa-sidebar">
+          <!-- single sidebar -->
+          <div class="aa-sidebar-widget">
+            <h3>Discipline</h3>
+            <ul class="aa-catg-nav">
+              <li><a>Civil and Residential</a></li>
+              <li><a>Mechanical</a></li>
+              <li><a>Electrical</a></li>
+              <li><a>Instrument and Control & Telecom</a></li>
+              <li><a>Health, Safety and Environment</a></li>
+              <li><a>Chemical, Coating and Paintings</a></li>
+            </ul>
+          </div>
+          <!-- single sidebar -->
+          <div class="aa-sidebar-widget">
+            <h3>Sector</h3>
+            <div class="tag-cloud">
+              <a>Oil and Gas</a>
+              <a>Industrial Projects</a>
+              <a>Power Plant</a>
+              <a>Water</a>
+              <a>Multi sector</a>
+              <a>Residential</a>
+            </div>
+          </div>
+          <!-- single sidebar -->
+          <!-- <div class="aa-sidebar-widget">
+                  <h3>Recently Views</h3>
+                  <div class="aa-recently-views">
+                    <ul>
+                      <li>
+                        <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Product Name</a></h4>
+                          <p>1 x $250</p>
+                        </div>
+                      </li>
+                      <li>
+                        <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-1.jpg"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Product Name</a></h4>
+                          <p>1 x $250</p>
+                        </div>
+                      </li>
+                       <li>
+                        <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Product Name</a></h4>
+                          <p>1 x $250</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+          <!-- single sidebar -->
+          <!-- <div class="aa-sidebar-widget">
+                  <h3>Top Rated Products</h3>
+                  <div class="aa-recently-views">
+                    <ul>
+                      <li>
+                        <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Product Name</a></h4>
+                          <p>1 x $250</p>
+                        </div>
+                      </li>
+                      <li>
+                        <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-1.jpg"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Product Name</a></h4>
+                          <p>1 x $250</p>
+                        </div>
+                      </li>
+                       <li>
+                        <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Product Name</a></h4>
+                          <p>1 x $250</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+        </aside>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!-- / product category -->

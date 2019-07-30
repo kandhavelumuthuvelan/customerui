@@ -1,0 +1,40 @@
+<div class="input-group mb-3">
+  <div class="input-group-prepend" [formGroup]="searchForm">
+    <div class="dropdown">
+        <select class="dropdown-btn dropdown-toggle"  (change)="onChangeSearch($event.target.value)" type="button" data-toggle="dropdown" formControlName="searchType">
+        <option  value="1">Products</option>
+        <option value="2">Supplier</option>
+      </select>
+      
+      <!-- <button class="dropdown-btn dropdown-toggle" type="button" data-toggle="dropdown" >Products
+        <span><img src="../../../../assets/img/angle-arrow-down.png" alt="Arrow img" width="10" /></span>
+      </button> -->
+      <!-- <ul class="dropdown-menu">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Supplier</a></li>
+      </ul> -->
+    </div>
+  </div>
+  <form>
+    <mat-form-field class="w-100 xs-form-width">
+      <input type="text" placeholder="{{Placeholder}}" (keydown.enter)="onSearchKeydown()" matInput
+        [formControl]="search" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option (onSelectionChange)="onSearchSubmit(search.productsearchkey)"
+          *ngFor="let search of ProductSearch" [value]="search.productsearchkey">
+          <div *ngIf="search.id == '1'">
+            <span class="fa fa-shopping-cart"></span> {{ search.productsearchkey }}
+          </div>
+          <div *ngIf="search.id == '2'">
+            <span class="fa fa-user"></span> {{ search.productsearchkey }}
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <div class="input-group-append search-append">
+    <span class="input-group-text">
+     <a href="javascript:void(0)"><img (click)="onSearchKeydown()" src="../../../../assets/img/search.png" width="22" /></a> 
+    </span>
+  </div>
+</div>

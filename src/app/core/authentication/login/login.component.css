@@ -1,0 +1,75 @@
+.supplier-modal h1{
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 600;
+}
+.supplier-modal .modal-dialog {
+    margin: 100px auto;
+    /* width: 320px; */
+    width: 593px;
+      height: 450px;
+  }
+.supplier-modal .modal-content{
+    background-image: url(../../../../assets/img/pop-bg-1.png);
+    padding: 10px 100px;
+    height: 449px;
+    border-radius: 25px;
+    background-repeat: no-repeat;
+    background-position-x: -1px;
+}
+.sup-btn{
+    padding: 10px; 
+    font-size: 24px;
+    background-color: #EE5067;
+    color: #fff;
+    font-weight: 600;
+    border:none;
+    border-radius: 6px;
+}
+.supplier-modal .form-control{
+    height: 42px;
+    border-radius: 6px;
+}
+.supplier-modal .form-control::-webkit-input-placeholder { /* Edge */
+  color: #6A6B6F;
+  font-size: 14px;
+  font-weight: 800;
+}
+.supplier-modal .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #6A6B6F;
+  font-size: 14px;
+  font-weight: 800;
+}
+.supplier-modal .form-control::placeholder {
+  color: #6A6B6F;
+  font-size: 14px;
+  font-weight: 800;
+}
+.supplier-modal .modal-dialog .close{
+    outline: none;
+    position: absolute;
+    right: -24px;
+    padding: 0px 15px;
+    z-index: 99;
+    border-radius: 50%;
+    top: -25px;
+    background: #ffffff94 ;
+    color: #0F354C;
+    opacity: 1;
+    text-shadow: none;
+    font-size: 60px;
+}
+.supplier-modal .logo a{
+    padding: 5px;
+    background-color: #fff;
+    display: inline-block;
+}
+.no-thank{
+    margin-top: 20px;
+}
+.no-thank a{
+    font-size: 18px;
+    text-decoration: underline;
+    color: #fff;
+}

@@ -1,0 +1,173 @@
+<!-- Delivery -->
+<section id="aa-blog-archive" *ngIf="Confirmed == 1">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <progress-bar [progress]="Delivery.deliverStatus" [color]="'#ff6666'"></progress-bar>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-blog-archive-area">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="aa-blog-content">
+                <div class="row">
+                  <div class="col-md-3 col-sm-3" *ngIf="Delivery.dispatched != false">
+                    <article class="aa-blog-content-single">
+                      <h4><a href="#">Dispatched</a></h4>
+                      <figure class="aa-blog-img">
+                        <a href="#"><img src="https://devdooydstorage.blob.core.windows.net/dooyd/OutForDelivery.jpg"
+                            alt="fashion img"></a>
+                      </figure>
+                      <p>{{Delivery.dispatchedMsg}}</p>
+                      <!-- <div class="aa-article-bottom">
+                        <div class="aa-post-author">
+                          Posted By <a href="#">Jackson</a>
+                        </div>
+                        <div class="aa-post-date">
+                          March 26th 2016
+                        </div>
+                      </div> -->
+                    </article>
+                  </div>
+                  <div class="col-md-3 col-sm-3" *ngIf="Delivery.arrived != false">
+                    <article class="aa-blog-content-single">
+                      <h4><a href="#">Arrived</a></h4>
+                      <figure class="aa-blog-img">
+                        <a href="#"><img src="https://devdooydstorage.blob.core.windows.net/dooyd/OutForDelivery.jpg"
+                            alt="fashion img"></a>
+                      </figure>
+                      <p>{{Delivery.arrivedMsg}}</p>
+                      <!-- <div class="aa-article-bottom">
+                          <div class="aa-post-author">
+                            Posted By <a href="#">Jackson</a>
+                          </div>
+                          <div class="aa-post-date">
+                            March 26th 2016
+                          </div>
+                        </div> -->
+                    </article>
+                  </div>
+                  <div class="col-md-3 col-sm-3" *ngIf="Delivery.outfordelivery != false">
+                    <article class="aa-blog-content-single">
+                      <h4><a href="#">Out for delivery</a></h4>
+                      <figure class="aa-blog-img">
+                        <a href="#"><img src="https://devdooydstorage.blob.core.windows.net/dooyd/OutForDelivery.jpg"
+                            alt="fashion img"></a>
+                      </figure>
+                      <p>{{Delivery.outfordeliveryMsg}}</p>
+                      <!-- <div class="aa-article-bottom">
+                            <div class="aa-post-author">
+                              Posted By <a href="#">Jackson</a>
+                            </div>
+                            <div class="aa-post-date">
+                              March 26th 2016
+                            </div>
+                          </div> -->
+                    </article>
+                  </div>
+                  <div class="col-md-3 col-sm-3" *ngIf="Delivery.delivered != false">
+                    <article class="aa-blog-content-single">
+                      <h4><a href="#">Delivered</a></h4>
+                      <figure class="aa-blog-img">
+                        <a href="#"><img src="https://devdooydstorage.blob.core.windows.net/dooyd/OutForDelivery.jpg"
+                            alt="fashion img"></a>
+                      </figure>
+                      <p>{{Delivery.deliveredMsg}}</p>
+                      <!-- <div class="aa-article-bottom">
+                          <div class="aa-post-author">
+                            Posted By <a href="#">Jackson</a>
+                          </div>
+                          <div class="aa-post-date">
+                            March 26th 2016
+                          </div>
+                        </div> -->
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Delivery -->
+
+
+<!-- Cart view section -->
+<section id="cart-view" *ngIf="Confirmed == 0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <form action="">
+              <div class="table-responsive">
+                <div class="bigContainer1 mt0">
+                  <div class="Ecart">
+                    <h1>Waiting for confimation from the seller!</h1>
+                    <img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->
+
+<!-- Cart view section -->
+<section id="cart-view" *ngIf="Confirmed == 2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="cart-view-area">
+            <div class="cart-view-table">
+              <form action="">
+                <div class="table-responsive">
+                  <div class="bigContainer1 mt0">
+                    <div class="Ecart">
+                      <h1>Your order cancelled by the seller!</h1>
+                      <img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / Cart view section -->
+
+<!-- Cart view section -->
+<section id="cart-view" *ngIf="Confirmed == 1 && Delivery.dispatched != true">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <form action="">
+              <div class="table-responsive">
+                <div class="bigContainer1 mt0">
+                  <div class="Ecart">
+                    <h1>Order confirmed by the seller!</h1>
+                    <img src="https://devdooydstorage.blob.core.windows.net/dooyd/OutForDelivery.jpg" alt="empty_cart">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

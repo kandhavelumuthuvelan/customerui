@@ -1,0 +1,65 @@
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Register</h4>
+          <form class="aa-login-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <label for="">Name<span>*</span></label>
+              <input type="text" formControlName="name" placeholder="Name">
+              <div class="validation-error" *ngIf="registerFormControls.name.errors?.required && (IsformSubmit||registerFormControls.name.touched)">
+                Name is required
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.name.errors?.minlength && (IsformSubmit||registerFormControls.name.touched)">
+                Name must contain 4 to 25 letters
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.name.errors?.maxlength && (IsformSubmit||registerFormControls.name.touched)">
+                Name must contain 4 to 25 letters
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.name.errors?.pattern && (IsformSubmit||registerFormControls.name.touched)">
+                Invalid Name
+               </div>
+              <label for="">Mobile<span>*</span></label>
+              <input type="text" formControlName="mobile" placeholder="Mobile">
+              <div class="validation-error" *ngIf="registerFormControls.mobile.errors?.required && (IsformSubmit||registerFormControls.mobile.touched)">
+                Mobile is required
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.mobile.errors?.minlength && (IsformSubmit||registerFormControls.mobile.touched)">
+                Mobile Number must be 10 digit
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.mobile.errors?.maxlength && (IsformSubmit||registerFormControls.mobile.touched)">
+                Mobile Number must contain minimum 10 digit
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.mobile.errors?.pattern && (IsformSubmit||registerFormControls.mobile.touched)">
+               Invalid Number.
+              </div>
+              <label for="">Email<span>*</span></label>
+              <input type="text" formControlName="email" placeholder="Email">
+              <div class="validation-error" *ngIf="registerFormControls.email.errors?.required && (IsformSubmit||registerFormControls.email.touched)">
+                Email is required
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.email.errors?.pattern && (IsformSubmit||registerFormControls.email.touched)">
+                Invalid Email
+              </div>
+              <label for="">Password<span>*</span></label>
+              <input type="password" formControlName="password" placeholder="Password">
+              <div class="validation-error" *ngIf="registerFormControls.password.errors?.required && (IsformSubmit||registerFormControls.password.touched)">
+                Password is required
+              </div>
+              <div class="validation-error" *ngIf="registerFormControls.password.errors?.pattern && (IsformSubmit||registerFormControls.password.touched)">
+                Password must contain minimum 8 characters with uppercase,lowercase,numbers and $@$!%*?&
+              </div>
+              <!-- <a routerLink="/terms">Terms & Conditions</a> -->
+              <button class="aa-browse-btn" type="submit">Register</button>
+              <label for="rememberme" class="rememberme"><input type="checkbox" checked disabled="disabled" > I agree to all the <a style="color: #ff6666" routerLink="/terms">Terms & Conditions</a> </label>
+              <!-- <div class="aa-register-now">
+                Have an account?<a href="" data-toggle="modal" data-target="#login-modal">Login now!</a>
+              </div> -->
+              <div class="aa-register-now">
+               Have an account ?<a style="color: #ff6666" href="javascript:void(0)" (click)="loginNow()"> Login now!</a>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

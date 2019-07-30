@@ -1,0 +1,128 @@
+<!-- Products section -->
+<section id="aa-product">
+  <div style="overflow-y: scroll;overflow: hidden;" infiniteScroll [infiniteScrollDistance]="8"
+    [infiniteScrollThrottle]="50" (scrolled)="LoadMore()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-product-area">
+          <div class="aa-product-inner">
+              <h4 *ngIf="TopRentalProducts?.length  != 0" class="mb-3 product-head">Top RentalProducts Products</h4>
+              <div class="row">
+                <div class="col-md-3 mb-3" *ngFor="let product of TopRentalProducts">
+                  <article class="entry-item" onclick="">
+                    <div class="entry-thumb">
+                      <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}"> <img width="182"
+                          height="268" src="{{product.imageUrl}}" class="attachment-360x618 size-360x618" alt=""></a>
+                      <div class="right-info">
+                        <span class="pg">
+                          <span>Rental</span>
+                        </span>
+                        <div class="entry-time">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="entry-content">
+                      <h4 class="entry-title">{{ product.name }}</h4>
+                      <div class="entry-date">
+                        <span class="pdp-offercost">Cost:</span> <strong class="pdp-price pdp-offercost mr-2">₹
+                          {{ product.cost }}</strong>
+                        <span class="pdp-mrp pdp-originalcost">
+                          <del>₹ {{product.cutcost }}</del>
+                        </span>
+                        <span
+                          class="pdp-discount pdp-originalcost">({{(100-((product.cost/product.cutcost)*100)).toFixed(2)}}%
+                          OFF)</span>
+                      </div>
+                    </div>
+                    <div class="pic-caption open-left"
+                      routerLink="/product-detail/{{ product.name }}/{{ product.id }}">
+                      <h4 class="entry-title">
+                        <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}">{{ product.name }}</a>
+                      </h4>
+                      <span class="pg">
+                        <span>Rental</span>
+                      </span>
+                      <div class="desc-mv">
+                        <p class="pdp-discount-container">
+                          <span>Price: </span> <strong class="pdp-price mr-2">₹ {{ product.cost }}</strong>
+                          <span class="pdp-mrp">
+                            <del>₹ {{product.cutcost }}</del>
+                          </span>
+                          <span class="pdp-discount">({{(100-((product.cost/product.cutcost)*100)).toFixed(2)}}%
+                            OFF)</span>
+                        </p>
+                        <p><span>Delivery : </span>{{ product.delivery }} days</p>
+                        <p><span>Shipping : </span>₹ {{ product.shippingCost }}</p>
+                        <p><span>Seller : </span>{{ product.sellerName }}</p>
+                      </div>
+                      <div class="entry-button hover-design">
+                        <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}">More Details</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <h4 *ngIf="RentalProducts?.length  != 0" class="mb-3 product-head">RentalProducts Products</h4>
+              <div class="row">
+                <div class="col-md-3 mb-3" *ngFor="let product of RentalProducts">
+                  <article class="entry-item" onclick="">
+                    <div class="entry-thumb">
+                      <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}"> <img width="182"
+                          height="268" src="{{product.imageUrl}}" class="attachment-360x618 size-360x618" alt=""></a>
+                      <div class="right-info">
+                        <span class="pg">
+                          <span>Rental</span>
+                        </span>
+                        <div class="entry-time">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="entry-content">
+                      <h4 class="entry-title">{{ product.name }}</h4>
+                      <div class="entry-date">
+                        <span class="pdp-offercost">Cost:</span> <strong class="pdp-price pdp-offercost mr-2">₹
+                          {{ product.cost }}</strong>
+                        <span class="pdp-mrp pdp-originalcost">
+                          <del>₹ {{product.cutcost }}</del>
+                        </span>
+                        <span
+                          class="pdp-discount pdp-originalcost">({{(100-((product.cost/product.cutcost)*100)).toFixed(2)}}%
+                          OFF)</span>
+                      </div>
+                    </div>
+                    <div class="pic-caption open-left"
+                      routerLink="/product-detail/{{ product.name }}/{{ product.id }}">
+                      <h4 class="entry-title">
+                        <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}">{{ product.name }}</a>
+                      </h4>
+                      <span class="pg">
+                        <span>Rental</span>
+                      </span>
+                      <div class="desc-mv">
+                        <p class="pdp-discount-container">
+                          <span>Price: </span> <strong class="pdp-price mr-2">₹ {{ product.cost }}</strong>
+                          <span class="pdp-mrp">
+                            <del>₹ {{product.cutcost }}</del>
+                          </span>
+                          <span class="pdp-discount">({{(100-((product.cost/product.cutcost)*100)).toFixed(2)}}%
+                            OFF)</span>
+                        </p>
+                        <p><span>Delivery : </span>{{ product.delivery }} days</p>
+                        <p><span>Shipping : </span>₹ {{ product.shippingCost }}</p>
+                        <p><span>Seller : </span>{{ product.sellerName }}</p>
+                      </div>
+                      <div class="entry-button hover-design">
+                        <a routerLink="/product-detail/{{ product.name }}/{{ product.id }}">More Details</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Products section -->

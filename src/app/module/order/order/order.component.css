@@ -1,0 +1,12 @@
+.order-row{
+    background-color: #eee;
+}
+.order-row td{
+    border: none !important;
+}
+.payment-status{
+    font-size: 12px;
+}
+.product-name{
+    text-transform: capitalize;
+}

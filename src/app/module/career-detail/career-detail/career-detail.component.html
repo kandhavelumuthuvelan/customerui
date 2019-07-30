@@ -1,0 +1,131 @@
+<!-- Blog Archive -->
+<section id="aa-blog-archive">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-blog-archive-area">
+          <div class="row">
+            <div class="col-md-9">
+              <!-- Blog details -->
+              <div class="aa-blog-content aa-blog-details">
+                <article class="aa-blog-content-single">
+                  <h2>{{CareerDetail.title}}</h2>
+                  <div class="aa-article-bottom">
+                    <div class="aa-post-author">
+                      Posted By <a href="#">DooyD</a>
+                    </div>
+                    <div class="aa-post-date">
+                      {{CareerDetail.createdDate | date: "MMM dd, yyyy"}}
+                    </div>
+                    <!-- <div class="float-right">
+                      <div class="blog-single-social">
+                        <a href="javascript:void(0)"
+                          (click)="onShare('https://www.facebook.com/sharer.php?u=https://dooyd.com/')"><i
+                            class="fa fa-facebook"></i></a>
+                        <a href="javascript:void(0)"
+                          (click)="onShare('https://twitter.com/share?url=https://dooyd.com/')"><i
+                            class="fa fa-twitter"></i></a>
+                        <a href="javascript:void(0)"
+                          (click)="onShare('https://www.linkedin.com/sharing/share-offsite/?url=https://dooyd.com/')"><i
+                            class="fa fa-linkedin"></i></a>
+                      </div>
+                    </div> -->
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <hr class="mt-0">
+                    </div>
+                  </div>
+                  <figure class="aa-blog-img">
+                    <p>{{CareerDetail.shortDescription}}</p>
+                    <div [innerHTML]="CareerDetail.description"></div>
+                  </figure>
+                </article>
+                <!-- blog comments form -->
+                <div id="respond">
+                  <form  [formGroup]="CareerForm" (ngSubmit)="AddBlogComment()">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="aa-checkout-single-bill">
+                          <input type="text" formControlName="name" placeholder="Name*">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="aa-checkout-single-bill">
+                          <input type="text" formControlName="email" placeholder="Email*">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="aa-checkout-single-bill">
+                          <input type="text" formControlName="mobile" placeholder="Mobile*">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="aa-checkout-single-bill">
+                          <input type="text" formControlName="website" placeholder="Website*">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="aa-checkout-single-bill">
+                          <textarea formControlName="comments" cols="45" rows="2" aria-required="true"></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p class="form-submit">
+                      <input type="submit"  [disabled]="!CareerForm.valid" class="aa-browse-btn"
+                        value="Apply this position">
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- blog sidebar -->
+            <!-- <div class="col-md-3">
+              <aside class="aa-blog-sidebar">
+                <div class="aa-sidebar-widget">
+                  <h3>Recent Post</h3>
+                  <div class="aa-recently-views">
+                    <ul>
+                      <li>
+                        <a class="aa-cartbox-img" href="#"><img
+                            src="https://devdooydstorage.blob.core.windows.net/dev/sys.jpg" alt="img"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
+                          <p>March 26th 2016</p>
+                        </div>
+                      </li>
+                      <li>
+                        <a class="aa-cartbox-img" href="#"><img
+                            src="https://devdooydstorage.blob.core.windows.net/dev/sys.jpg" alt="img"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Lorem ipsum dolor.</a></h4>
+                          <p>March 26th 2016</p>
+                        </div>
+                      </li>
+                      <li>
+                        <a class="aa-cartbox-img" href="#"><img
+                            src="https://devdooydstorage.blob.core.windows.net/dev/sys.jpg" alt="img"></a>
+                        <div class="aa-cartbox-info">
+                          <h4><a href="#">Lorem ipsum dolor.</a></h4>
+                          <p>March 26th 2016</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </aside>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Blog Archive -->

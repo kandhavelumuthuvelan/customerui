@@ -1,0 +1,91 @@
+<!-- Cart view section -->
+<section id="cart-view">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <div class="table-responsive">
+              <table class="table" *ngIf="Mups?.length  != 0">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Seller</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Shipping</th>
+                    <th>Delivery</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of Mups">
+                    <!-- <td><a href="javascript:void(0)" (click)="deleteMupRequest(product.id)" class="fa fa-close" style="color: red"></a></td> -->
+                    <td><a routerLink="/product-detail/{{ product.productName }}/{{ product.productId }}"><img [src]="product.imageUrl" alt="img"></a></td>
+                    <td>
+                      <a routerLink="/product-detail/{{ product.productName }}/{{ product.productId }}" class="aa-cart-title">{{
+                        product.productName }}</a>
+                      <p *ngIf="product.dayCount != 0">
+                        <font size="1">({{ product.fromDate }} To {{ product.toDate }})</font>
+                      </p>
+                    </td>
+                    <td>{{ product.sellerName }}</td>
+                    <td>{{ product.quantity }}
+                      <p *ngIf="product.dayCount != 0">
+                        <font size="1">({{ product.dayCount }}days)</font>
+                      </p>
+                    </td>
+                    <td *ngIf="product.cost == null">Pending</td>
+                    <td *ngIf="product.cost != null">₹ {{ product.cost }}</td>
+
+                    <td *ngIf="product.shippingCost == null">Pending</td>
+                    <td *ngIf="product.shippingCost != null">₹ {{ product.shippingCost }}</td>
+
+                    <td *ngIf="product.delivery == null">Pending</td>
+                    <td *ngIf="product.delivery != null">{{ product.delivery }} days</td>
+
+                    <td *ngIf="product.status == 0 || product.status == 2" >Pending</td>
+                    <td *ngIf="product.dayCount != 0 && product.status != 0 && product.status != 2 ">₹ {{ product.cost * product.quantity *product.dayCount }}</td>
+                    <td *ngIf="product.dayCount == 0 && product.status != 0 && product.status != 2">₹ {{ product.cost * product.quantity}}</td>
+
+
+                    <td style="color: blue; font-family:bold" *ngIf="product.status == 0">In Process</td>
+                    <td style="color: green;font-family:bold" *ngIf="product.status == 1">Processed</td>
+                    <td style="color: red;font-family:bold" *ngIf="product.status == 2">Rejected</td>
+                    <td style="color: violet;font-family:bold" *ngIf="product.status == 3">Added to Cart</td>
+                    <td style="color: green;font-family:bold" *ngIf="product.status == 4">Orderd</td>
+                    <td style="color: red;font-family:bold" *ngIf="product.status == 5">Payment Failed</td>
+                    <td style="color: yellow;font-family:bold" *ngIf="product.status == 6">Payment Pending</td>
+
+                    <td style="color: blue;font-family:bold" *ngIf="product.status == 0">In Process</td>
+                    <td style="color: red;font-family:bold" *ngIf="product.status == 1"><a href="javascript:void(0)" type="button" (click)="addToCart(product.id)" class="aa-browse-btn">Add To Cart</a></td>
+                    <td style="color: red;font-family:bold" *ngIf="product.status == 2"><a href="javascript:void(0)" type="button" class="aa-browse-btn">Retry</a></td>
+                    <td style="color: violet;font-family:bold" *ngIf="product.status == 3">Added to Cart</td>
+                    <td style="color: green;font-family:bold" *ngIf="product.status == 4">Orderd</td>
+                    <td style="color: red;font-family:bold" *ngIf="product.status == 5">Payment Failed</td>
+                    <td style="color: yellow;font-family:bold" *ngIf="product.status == 6">Payment Pending</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div *ngIf="Mups?.length == 0" class="bigContainer1 mt0">
+                <div class="Ecart">
+                  <h1>Your order request is Empty!</h1><img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png"
+                    alt="empty_cart" src="https://shop.paytm.com/images/empty-cart.png">
+                  <div class="cart-view-total">
+                    <a routerLink="/" class="aa-cart-view-btn">
+                      Start Shopping
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

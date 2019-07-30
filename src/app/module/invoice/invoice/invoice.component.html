@@ -1,0 +1,256 @@
+<section id="cart-view">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <div class="text-center" style="margin:10px">
+            <!-- <input _ngcontent-c14="" class="aa-browse-btn" type="button" (click)="captureScreen()" value="Download Invoice"
+              *ngIf="billingDetail.length > 0"><i class="fa fa-download" aria-hidden="true"></i> -->
+              <a href="javascript:void(0)" class="aa-browse-btn" (click)="captureScreen()"><i class="fa fa-download" aria-hidden="true"></i> Download Invoice</a>
+          </div>
+          <div class="invoice-box" id="invBox" *ngIf="billingDetail.length > 0">
+            <table cellpadding="0" cellspacing="0">
+              <tr class="top">
+                <td colspan="4">
+                  <table>
+                    <tr>
+                      <td class="title">
+                        <img src="../assets/img/logo.png">
+                      </td>
+                      <td>
+                        Invoice No: <strong>{{billingDetail[0].invoiceNo}}</strong><br>
+                        Created: <strong>{{billingDetail[0].invoiceDate| date: 'medium'}}</strong><br>
+                        Order ID: <strong>{{billingDetail[0].orderId}}</strong>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr class="information">
+                <td colspan="4">
+                  <table>
+                    <tr>
+                      <td>
+                        <strong>Billing Address</strong><br>
+                        {{billingDetail[0].sellerName}}<br>
+                        {{billingDetail[0].sellerProperty}}<br>
+                        {{billingDetail[0].sellerStreet}}<br>
+                        {{billingDetail[0].sellerAddressDetail}}
+                      </td>
+                      <td>
+                        <strong>Shipping Address</strong><br>
+                        {{billingDetail[0].customerName}}<br>
+                        {{billingDetail[0].customerProperty}}<br>
+                        {{billingDetail[0].customerStreet}}<br>
+                        {{billingDetail[0].customerAddressDetail}}
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- <tr class="heading">
+        <td>
+          Payment Method
+        </td>
+
+        <td>
+          Check #
+        </td>
+      </tr> -->
+
+              <!-- <tr class="details">
+        <td>
+          Check
+        </td>
+
+        <td>
+          1000
+        </td>
+      </tr> -->
+
+              <tr class="heading">
+                <td>
+                  Product
+                </td>
+                <td class="text-left">
+                  Price
+                </td>
+                <td>
+                  Quantity
+                </td>
+                <td class="text-right">
+                  Total
+                </td>
+              </tr>
+
+              <tr class="item" *ngFor="let bill of billingDetail">
+                <td>
+                  {{bill.productName}}
+                  <span *ngIf="bill.dayCount != 0">
+                    <font size="2">({{ bill.fromDate }} To {{ bill.toDate }})</font>
+                  </span>
+                  <span style="color: blue " *ngIf="bill.type == 1"><font  size="1">(Bulk/Custom)</font></span>
+                </td>
+                <td class="text-left">
+                  ₹ {{bill.productCost}}
+                </td>
+                <td>
+                  {{bill.productQuantity}}
+                  <span *ngIf="bill.dayCount != 0">
+                    <font size="2">({{ bill.dayCount }}days)</font>
+                  </span>
+                </td>
+                <!-- <td>
+            ₹ {{bill.subTotal}}
+          </td> -->
+                <td  class="text-right" *ngIf="bill.dayCount != 0">₹ {{ bill.subTotal * bill.dayCount }}</td>
+                <td  class="text-right" *ngIf="bill.dayCount == 0">₹ {{ bill.subTotal }}</td>
+              </tr>
+              <tr class="total">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right" style="font-weight: bolder;">
+                  Total: ₹ {{billingDetail[0].total}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="invoice-box" style="min-width: 1000px;display: none;" id="invBoxDownload" *ngIf="billingDetail.length > 0">
+              <table cellpadding="0" cellspacing="0">
+                  <tr class="top">
+                    <td colspan="4">
+                      <table>
+                        <tr>
+                          <td class="title">
+                            <img src="../assets/img/logo.png">
+                          </td>
+                          <td>
+                            Invoice No: <strong>{{billingDetail[0].invoiceNo}}</strong><br>
+                            Created: <strong>{{billingDetail[0].invoiceDate| date: 'medium'}}</strong><br>
+                            Order ID: <strong>{{billingDetail[0].orderId}}</strong>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+    
+                  <tr class="information">
+                    <td colspan="4">
+                      <table>
+                        <tr>
+                          <td>
+                            <strong>Billing Address</strong><br>
+                            {{billingDetail[0].sellerName}}<br>
+                            {{billingDetail[0].sellerProperty}}<br>
+                            {{billingDetail[0].sellerStreet}}<br>
+                            {{billingDetail[0].sellerAddressDetail}}
+                          </td>
+                          <td>
+                            <strong>Shipping Address</strong><br>
+                            {{billingDetail[0].customerName}}<br>
+                            {{billingDetail[0].customerProperty}}<br>
+                            {{billingDetail[0].customerStreet}}<br>
+                            {{billingDetail[0].customerAddressDetail}}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+    
+                  <!-- <tr class="heading">
+            <td>
+              Payment Method
+            </td>
+    
+            <td>
+              Check #
+            </td>
+          </tr> -->
+    
+                  <!-- <tr class="details">
+            <td>
+              Check
+            </td>
+    
+            <td>
+              1000
+            </td>
+          </tr> -->
+    
+                  <tr class="heading">
+                    <td>
+                      Product
+                    </td>
+                    <td class="text-left">
+                      Price
+                    </td>
+                    <td>
+                      Quantity
+                    </td>
+                    <td class="text-right">
+                      Total
+                    </td>
+                  </tr>
+    
+                  <tr class="item" *ngFor="let bill of billingDetail">
+                    <td>
+                      {{bill.productName}}
+                      <span *ngIf="bill.dayCount != 0">
+                        <font size="2">({{ bill.fromDate }} To {{ bill.toDate }})</font>
+                      </span>
+                      <span style="color: blue " *ngIf="bill.type == 1"><font  size="1">(Bulk/Custom)</font></span>
+                    </td>
+                    <td class="text-left">
+                      ₹ {{bill.productCost}}
+                    </td>
+                    <td>
+                      {{bill.productQuantity}}
+                      <span *ngIf="bill.dayCount != 0">
+                        <font size="2">({{ bill.dayCount }}days)</font>
+                      </span>
+                    </td>
+                    <!-- <td>
+                ₹ {{bill.subTotal}}
+              </td> -->
+                    <td  class="text-right" *ngIf="bill.dayCount != 0">₹ {{ bill.subTotal * bill.dayCount }}</td>
+                    <td  class="text-right" *ngIf="bill.dayCount == 0">₹ {{ bill.subTotal }}</td>
+                  </tr>
+                  <tr class="total">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-right" style="font-weight: bolder;">
+                      Total: ₹ {{billingDetail[0].total}}
+                    </td>
+                  </tr>
+                </table>
+          </div>
+          <div class="container-fluid" *ngIf="billingDetail.length == 0">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="error-template">
+                  <h1>
+                    Oops!</h1>
+                  <h2>
+                    404 Not Found</h2>
+                  <div class="error-details">
+                    Sorry, Requested Invoice not available!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-md-12 text-center" style="margin:10px">
+    <input _ngcontent-c14="" class="aa-browse-btn" type="button" (click)="captureScreen()" value="Download Invoice"
+      *ngIf="billingDetail.length > 0">
+  </div> -->
+
+</section>
+-

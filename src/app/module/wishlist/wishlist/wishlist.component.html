@@ -1,0 +1,55 @@
+   <section id="cart-view">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="cart-view-area">
+            <div class="cart-view-table aa-wishlist-table">
+                <div class="table-responsive">
+                   <table class="table" *ngIf="WishlistProducts?.length  != 0">
+                     <thead>
+                       <tr>
+                         <th></th>
+                         <th>Image</th>
+                         <th>Product</th>
+                         <th>Price</th>
+                         <th>Status</th>
+                         <th>Action</th>
+                       </tr>
+                     </thead>
+                     <tbody >
+                       <tr *ngFor="let product of WishlistProducts">
+                         <td><a href="javascript:void(0)" (click)="deleteFromWishlist(product.id)"class="fa fa-close" style="color: red" ></a></td>
+                         <td><a routerLink="/product-detail/{{ product.name }}/{{ product.productid }}"><img [src]="product.imageUrl"
+                          alt="img"></a></td>
+                         <td><a routerLink="/product-detail/{{ product.name }}/{{ product.productid }}" class="aa-cart-title">{{ product.name }}</a></td>
+                         <td><span class="aa-product-price">₹ {{ product.cost }}</span><span class="aa-product-price">&nbsp;&nbsp;<del>₹ {{
+                            product.cutcost }}</del></span></td>
+                         <td style="color: green; font-family:bold"  *ngIf="product.quantity > 0">In Stock</td>
+                         <td style="color: red;font-family:bold" *ngIf="product.quantity <= 0">Sold Out</td>
+                         <td><a href="javascript:void(0)" (click)="addToCart(product.id)" class="aa-browse-btn">Add To Cart</a></td>
+                       </tr>
+                       </tbody>
+                   </table>
+                   <div *ngIf="WishlistProducts?.length  == 0" class="bigContainer1 mt0">
+                      <div class="Ecart">
+                        <h1>Your Wishlist is Empty!</h1>
+                        <img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart">
+                        <div class="cart-view-total">
+                            <a routerLink="/" class="aa-cart-view-btn">
+                              Start Shopping
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                 </div>
+                 <!-- Cart Total view -->
+            <div class="cart-view-total" *ngIf="WishlistProducts?.length  != 0">
+                <a href="javascript:void(0)" type="button" (click)="GoToCart()" class="aa-cart-view-btn">Go to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / Cart view section -->

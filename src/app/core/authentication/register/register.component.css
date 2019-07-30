@@ -1,0 +1,86 @@
+/* .aa-login-form button {
+  font-size: 14px;
+  padding: 8px 20px;
+  margin-right: 5px;
+  margin-top: -7px !important;
+  float: left;
+} */
+/* .aa-register-now {
+  margin-top: 8px;
+} */
+.aa-register-now {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  font-size: 13px;
+  padding-top: 10px;
+}
+/* .aa-register-now a {
+  margin-left: 5px;
+} */
+
+/*---- Login form ----*/
+
+.aa-login-form input[type="text"],
+.aa-login-form input[type="password"],
+.aa-login-form input[type="email"] {
+  border: 1px solid #ccc;
+  font-size: 16px;
+  height: 40px;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 100%;
+}
+.aa-login-form label {
+  font-weight: normal;
+  margin-top: 8px;
+}
+.aa-login-form label span {
+  color: red;
+}
+.aa-login-form .rememberme {
+  cursor: pointer;
+  margin-top: 18px;
+}
+.aa-login-form input[type="checkbox"] {
+  margin-top: 5px;
+}
+.aa-login-form button {
+  font-size: 14px;
+  padding: 8px 20px;
+  margin-right: 5px;
+  margin-top: 10px;
+  float: left;
+}
+.aa-login-form .aa-lost-password {
+  color: #555;
+  margin-top: 10px;
+  width: 100%;
+}
+.aa-login-form .aa-lost-password a {
+  color: #555;
+}
+
+/*---- LOGIN MODAL ----*/
+
+#login-modal .modal-content {
+  border-radius: 0;
+}
+#login-modal .modal-dialog {
+  margin: 100px auto;
+  width: 320px;
+}
+#login-modal .modal-dialog h4 {
+  border-bottom: 1px solid #ccc;
+  color: #666;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+#login-modal .modal-dialog .aa-register-now {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  font-size: 14px;
+  padding-top: 10px;
+}
+#login-modal .modal-dialog .aa-register-now a {
+  margin-left: 5px;
+}

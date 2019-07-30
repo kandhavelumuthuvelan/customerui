@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="messaging">
+        <div class="inbox_msg">
+          <div class="inbox_people">
+            <div class="headind_srch">
+              <div class="recent_heading">
+                <h4>Recent</h4>
+              </div>
+              <div class="srch_bar">
+                <div class="stylish-input-group">
+                  <input type="text" class="search-bar"  placeholder="Search" [(ngModel)]="searchText" >
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                 </div>
+              </div>
+            </div>
+            <div class="inbox_chat">
+              <div id="chat_list" class="chat_list" *ngFor="let item of chatDetails| filter : searchText" [ngClass]="{'active_chat':selectedIndex == item.id}" (click)="selectChatDetail(item.id)">
+                  <div class="chat_people">
+                    <div class="chat_img">
+                      <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                      <i class="fa fa-circle online_status" [ngClass]="{'text-success':item.isOnline,'text-danger':!item.isOnline}" aria-hidden="true"></i>
+                      <i class="fa fa-envelope hasUnreadMsg" *ngIf="item.hasUnReadMsg" aria-hidden="true"></i>
+                    </div>
+                    <div class="chat_ib">
+                      <h5><a [routerLink]="['/product-detail', item.productDetail.id]">{{item.productDetail.name}}</a> <span class="chat_date">{{item.createdDate|date:"MMMM d, y"}}</span></h5>
+                      <h5>{{item.sellerName}}</h5>
+                      <p>{{item.chatDetail.length > 0 ? item.chatDetail[item.chatDetail.length - 1].message:''}}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="mesgs">
+            <div #msg_history id="msg_history" class="msg_history">
+              <div [ngClass]="{'incoming_msg':item.isCustomer,'outgoing_msg':!item.isCustomer}"   *ngFor="let item of selectedChat; let isLast = last" attr.id="Location{{isLast}}" [class.lastElement]="isLast">
+                <div class="received_msg" *ngIf="item.isCustomer">
+                  <div class="received_withd_msg">
+                    <p>{{item.message}}</p>
+                    <span class="time_date"> {{item.createdDate | date:"h:mm a" }}    |    {{item.createdDate | date:"MMM dd" }}</span></div>
+                </div>
+                <div *ngIf="!item.isCustomer">
+                  <div class="sent_msg">
+                    <p>{{item.message}}</p>
+                    <span class="time_date">{{item.createdDate | date:"h:mm a" }}   |   {{item.createdDate | date:"MMM dd" }}</span> </div>
+                </div>
+              </div>
+            </div>
+            <div class="type_msg">
+              <div class="input_msg_write">
+                <input type="text" id="write_msg" class="write_msg" (keydown.enter)="post()" [(ngModel)]="chatMsg" placeholder="Type a message" />
+                <button class="msg_send_btn" type="button"  (click)="post()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>

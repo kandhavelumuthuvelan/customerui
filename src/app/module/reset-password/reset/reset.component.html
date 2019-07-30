@@ -1,0 +1,72 @@
+<!-- Cart view section -->
+<section id="checkout">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="checkout-area">
+          <form action="">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="checkout-left">
+                  <div class="panel-group" id="accordion">
+                    <!-- Change Password -->
+                    <div class="panel panel-default aa-checkout-billaddress">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            Reset Password
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                          <form [formGroup]="resetForm" (ngSubmit)="onResetPasswordSubmit()">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="password" formControlName="newPassword" placeholder="New password*">
+                                  <div class="validation-error" *ngIf="resetPasswordFormControls.newPassword.errors?.required && (IsresetFormSubmit||resetPasswordFormControls.newPassword.touched)">
+                                    New password is required
+                                  </div>
+                                  <!-- <div class="validation-error" *ngIf="changePasswordFormControls.newPassword.errors?.minlength && (IschangePasswordSubmit||changePasswordFormControls.newPassword.touched)">
+                                    Minimum 5 characters required
+                                  </div> -->
+                                  <div class="validation-error" *ngIf="resetPasswordFormControls.newPassword.errors?.pattern && (IsresetFormSubmit||resetPasswordFormControls.newPassword.touched)">
+                                    Password must contain minimum 8 characters with uppercase,lowercase,numbers and $@$!%*?&
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="password" formControlName="confirmNewPassword" placeholder="Confirm new password*">
+                                  <div class="validation-error" *ngIf="resetPasswordFormControls.confirmNewPassword.errors?.required && (IsresetFormSubmit||resetPasswordFormControls.confirmNewPassword.touched)">
+                                    Confirm new password is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="resetPasswordFormControls.confirmNewPassword.errors?.MatchPassword && (IsresetFormSubmit||resetPasswordFormControls.confirmNewPassword.touched)">
+                                    Password not match
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input type="submit" value="Update" class="aa-browse-btn">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

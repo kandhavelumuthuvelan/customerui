@@ -1,0 +1,56 @@
+<!-- Cart view section -->
+<section id="checkout">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="checkout-area">
+          <form action="">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="checkout-left">
+                  <div class="panel-group" id="accordion">
+                    <!-- Change Password -->
+                    <div class="panel panel-default aa-checkout-billaddress">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            Forgot Password
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                          <form [formGroup]="forgotForm" (ngSubmit)="onForgotPasswordSubmit()">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="email" placeholder="Email*">
+                                  <div class="validation-error" *ngIf="forgotFormControls.email.errors?.required && (IsformSubmit||forgotFormControls.email.touched)">
+                                    Email is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="forgotFormControls.email.errors?.pattern && (IsformSubmit||forgotFormControls.email.touched)">
+                                    Invalid Email
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input type="submit" value="Submit" class="aa-browse-btn">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

@@ -1,0 +1,163 @@
+<!-- Cart view section -->
+<section id="checkout">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="checkout-area">
+          <form action="">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="checkout-left">
+                  <div class="panel-group" id="accordion">
+                    <!-- Personal Info -->
+                    <div class="panel panel-default aa-checkout-billaddress">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                              Request for Quotation..
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                          <form [formGroup]="instantForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="name" placeholder="Enter Product/Service you are looking for*">
+                                  <div class="validation-error" *ngIf="instantFormControls.name.errors?.required && (IsinstantFormSubmit||instantFormControls.name.touched)">
+                                    Product Name is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.name.errors?.minlength && (IsinstantFormSubmit||instantFormControls.name.touched)">
+                                    Minimum 4 to 25 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.name.errors?.maxlength && (IsinstantFormSubmit||instantFormControls.name.touched)">
+                                    Minimum 4 to 25 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <div class="aa-checkout-single-bill">
+                                  <select class="form-control" (ngModelChange)="OnSelectCategory($event)"
+                                    formControlName="productcategoryid">
+                                    <option disabled="disabled" value="">-- Select Product Category --</option>
+                                    <option *ngFor="let item of productCategories | keyvalue" [value]="item.key">{{
+                                      item.value }}</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="instantFormControls.productcategoryid.errors?.required && (IsinstantFormSubmit||instantFormControls.productcategoryid.touched)">
+                                    Category is required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <div class="aa-checkout-single-bill">
+                                  <select class="form-control" (ngModelChange)="OnSelectDiscipline($event)"
+                                    formControlName="productdisciplineid">
+                                    <option disabled="disabled" value="">-- Select Product Discipline --</option>
+                                    <option *ngFor="let item of productDisciplines | keyvalue" [value]="item.key">{{
+                                      item.value }}</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="instantFormControls.productdisciplineid.errors?.required && (IsinstantFormSubmit||instantFormControls.productdisciplineid.touched)">
+                                    Discipline is required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <div class="aa-checkout-single-bill">
+                                  <select class="form-control" formControlName="productsectorid">
+                                      <option disabled="disabled" value="">-- Select Product Sector --</option>
+                                    <option *ngFor="let item of productSectors | keyvalue" [value]="item.key">{{
+                                      item.value }}</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="instantFormControls.productsectorid.errors?.required && (IsinstantFormSubmit||instantFormControls.productsectorid.touched)">
+                                    Sector is required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="email" formControlName="quantity" placeholder="Quantity*">
+                                  <div class="validation-error" *ngIf="instantFormControls.quantity.errors?.required && (IsinstantFormSubmit||instantFormControls.quantity.touched)">
+                                    Quantity is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.quantity.errors?.minlength && (IsinstantFormSubmit||instantFormControls.quantity.touched)">
+                                    Accepted quantity 1 to 999999
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.quantity.errors?.maxlength && (IsinstantFormSubmit||instantFormControls.quantity.touched)">
+                                    Accepted quantity 1 to 999999
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.quantity.errors?.pattern && (IsinstantFormSubmit||instantFormControls.quantity.touched)">
+                                    Invalid quantity
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <div class="aa-checkout-single-bill">
+                                  <textarea type="text" formControlName="description" placeholder="Description*"></textarea>
+                                  <!-- <input type="text" formControlName="description" placeholder="Description*"> -->
+                                  <div class="validation-error" *ngIf="instantFormControls.description.errors?.required && (IsinstantFormSubmit||instantFormControls.description.touched)">
+                                    Description is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.description.errors?.minlength && (IsinstantFormSubmit||instantFormControls.description.touched)">
+                                    Minimum 25 to 250 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="instantFormControls.description.errors?.maxlength && (IsinstantFormSubmit||instantFormControls.description.touched)">
+                                    Minimum 25 to 250 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                  <div class="form-group">
+                                      <input type="file" name="file" id="file-upload" class="inputfile" />
+                                      <label for="file-upload"><i class="fa fa-upload mr-2"></i>Upload Attachment</label>
+                                  </div>
+                                </div>
+                              </div>
+                            <div class="row">
+                              <div class="col-md-12 col-xs-12">
+                                <input type="submit" value="Submit" class="aa-browse-btn">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="request-block text-center">
+                    <h5>Welcome to DooyD !!!</h5>
+                    <h2>Submit you request for best Quatation for the product and service you are looking for ..!!! </h2>
+                    <p>
+                      <b> Within 3 working days</b> we will send you the 3 best quotation and their product and service link to your registered e-mail.
+                    </p>
+                    <p>
+                    You can compare the Quotation, contact the supplier and order.
+                    </p>
+                </div>
+                <div class="text-center">
+                  <img src="../../../../assets/img/request.jpg"/>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

@@ -1,0 +1,76 @@
+.dropbtn {
+    color: #000;
+    font-size: 16px;
+    border: none;
+  }
+  .dropbtn img, .login-content img{
+      margin-right: 15px;
+  }
+  .dropbtn span, .login-conten span{
+      vertical-align: middle;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 14px;
+  }
+  .download-app a{
+    vertical-align: middle;
+  }
+  #aa-header .aa-header-top .aa-header-top-right .aa-head-top-nav-right li:last-child a{
+      border-right: none;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 0px 3px 0px #a1a1a1;
+    z-index: 1;
+  }
+  .user-info{
+    display: inline-block;
+    max-width:120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  .dropdown-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+  .login-content{
+      margin-top: 18px;
+      display: block;
+  }
+  .dropdown-content a:hover {background-color: #f5f8f9;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+.top-navbar p{
+    margin-bottom: 0px;
+}
+ 
+ app-search{
+  flex-grow: 1;
+ }
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    .clear-xs{
+        clear: both;
+    }
+    .dropbtn img{
+        margin-right: 5px;
+    }
+  }
+  .download-app img{
+    width: 80px;
+    height: 26px;
+  }
+  .download-app a {
+    margin-right: 10px;
+  }
+  

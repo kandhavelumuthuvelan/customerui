@@ -1,0 +1,97 @@
+<!-- Cart view section -->
+<section id="cart-view">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <!-- Cart Total view -->
+            <div class="cart-view-total" *ngIf="CartProducts?.length  != 0">
+              <h4>Cart Totals</h4>
+              <table class="aa-totals-table">
+                <tbody>
+                  <!-- <tr>
+                    <th>Subtotal</th>
+                    <td>₹ {{ cartTotal }} </td>
+                  </tr> -->
+                  <tr>
+                    <th>Total</th>
+                    <td style="font-weight:bold" >₹ {{cartTotal}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="javascript:void(0)" type="button" (click)="ProceedToCheckout()" class="aa-cart-view-btn">Proceed
+                to Checkout</a>
+              <hr>
+            </div>
+            <div class="table-responsive">
+              <table class="table" *ngIf="CartProducts?.length  != 0">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of CartProducts">
+                    <td><a href="javascript:void(0)" (click)="deleteFromCart(product.id)" class="fa fa-close"
+                        style="color: red"></a></td>
+                    <td><a routerLink="/product-detail/{{ product.name }}/{{ product.productid }}"><img
+                          [src]="product.imageUrl" alt="img"></a></td>
+                    <td>
+                      <a routerLink="/product-detail/{{ product.name }}/{{ product.productid }}"
+                        class="aa-cart-title">{{ product.name }}</a>
+                      <p *ngIf="product.dayCount != 0">
+                        <font size="1">({{ product.fromDate }} To {{ product.toDate }})</font>
+                      </p>
+                      <p style="color: blue " *ngIf="product.type == 1">
+                        <font size="1">(Bulk/Custom)</font>
+                      </p>
+                    </td>
+                    <td style="color: green; font-family:bold" *ngIf="product.productquantity >0">In Stock
+                    <td style="color: red;font-family:bold" *ngIf="product.productquantity <= 0">Sold Out</td>
+
+                    <td><span class="aa-product-price">₹ {{ product.cost }}</span><span
+                        class="aa-product-price">&nbsp;&nbsp;<del>₹ {{
+                          product.cutcost }}</del></span></td>
+                    <td>
+                      <a href="javascript:void(0)"><i style="color: #ff6666" class="fa fa-minus"
+                          *ngIf="product.quantity > 1 && product.type != 1" (click)="decreaseQuantity(product.id)"
+                          aria-hidden="true"></i></a>
+                      {{ product.quantity }}
+                      <a href="javascript:void(0)"><i style="color: #ff6666" class="fa fa-plus"
+                          *ngIf="product.type != 1" (click)="increaseQuantity(product.id)" aria-hidden="true"></i></a>
+                      <p *ngIf="product.dayCount != 0">
+                        <font size="1">({{ product.dayCount }}days)</font>
+                      </p>
+                    </td>
+                    <td *ngIf="product.dayCount != 0">₹ {{ product.cost * product.quantity * product.dayCount }}</td>
+                    <td *ngIf="product.dayCount == 0">₹ {{ product.cost * product.quantity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div *ngIf="CartProducts?.length == 0" class="bigContainer1 mt0">
+                <div class="Ecart">
+                  <h1>Your Cart is Empty!</h1><img
+                    src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart"
+                    src="https://shop.paytm.com/images/empty-cart.png">
+                  <div class="cart-view-total">
+                    <a routerLink="/" class="aa-cart-view-btn">
+                      Start Shopping
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

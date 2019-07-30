@@ -1,0 +1,560 @@
+<!-- Cart view section -->
+<section id="checkout">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="checkout-area">
+          <form action="">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="checkout-left">
+                  <div class="panel-group" id="accordion">
+                    <!-- Shipping Address -->
+                    <div class="panel panel-default aa-checkout-billaddress">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            Shipping Address
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse {{panelShiipingAddress}}">
+                        <div class="panel-body">
+                          <form *ngIf="frmAddressDD" [formGroup]="placeOrderForm">
+                            <div class="row">
+                              <div class="col-md-10">
+                                <div class="aa-checkout-single-bill">
+                                  <select formControlName="shippingaddressid" (change)="onChangeGetAddress($event.target.value)">
+                                    <option disabled="disabled" value="">--Select Shipping Address --</option>
+                                    <option *ngFor="let address of CustomerAddresses" [value]="address.id">{{address.nameofaddress}}</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="placeOrderFormControls.shippingaddressid.errors?.required && (IsplaceOrderFormformSubmit||placeOrderFormControls.shippingaddressid.touched)">
+                                    Shipping Address is required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-2">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="button" value="Add New" (click)="onAddNewAddress()" *ngIf="btnAddNewAddressShipping"
+                                    class="aa-browse-btn">
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                          <form [formGroup]="addressForm">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="nameofaddress" placeholder="Name Of Address*">
+                                  <div class="validation-error" *ngIf="addressFormControls.nameofaddress.errors?.required && (IsaddressformSubmit||addressFormControls.nameofaddress.touched)">
+                                    Name Of Address is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.nameofaddress.errors?.minlength && (IsaddressformSubmit||addressFormControls.nameofaddress.touched)">
+                                    Minimum 4 to 50 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.nameofaddress.errors?.maxlength && (IsaddressformSubmit||addressFormControls.nameofaddress.touched)">
+                                    Minimum 4 to 50 characters required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="name" placeholder="Name*">
+                                  <div class="validation-error" *ngIf="addressFormControls.name.errors?.required && (IsaddressformSubmit||addressFormControls.name.touched)">
+                                    Name is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.name.errors?.minlength && (IsaddressformSubmit||addressFormControls.name.touched)">
+                                    Name must contain 4 to 25 letters
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.name.errors?.maxlength && (IsaddressformSubmit||addressFormControls.name.touched)">
+                                    Name must contain 4 to 25 letters
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.name.errors?.pattern && (IsaddressformSubmit||addressFormControls.name.touched)">
+                                    Invalid Name
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="tel" formControlName="mobile" placeholder="Mobile*">
+                                  <div class="validation-error" *ngIf="addressFormControls.mobile.errors?.required && (IsaddressformSubmit||addressFormControls.mobile.touched)">
+                                    Mobile is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.mobile.errors?.minlength && (IsaddressformSubmit||addressFormControls.mobile.touched)">
+                                    Mobile Number must be 10 digit
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.mobile.errors?.maxlength && (IsaddressformSubmit||addressFormControls.mobile.touched)">
+                                    Mobile Number must be 10 digit
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.mobile.errors?.pattern && (IsaddressformSubmit||addressFormControls.mobile.touched)">
+                                    Invalid Number
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="property" placeholder="Appartment/Company, Suite etc.*">
+                                  <div class="validation-error" *ngIf="addressFormControls.property.errors?.required && (IsaddressformSubmit||addressFormControls.property.touched)">
+                                    Appartment/Company, Suite etc. is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.property.errors?.minlength && (IsaddressformSubmit||addressFormControls.property.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.property.errors?.maxlength && (IsaddressformSubmit||addressFormControls.property.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="street" placeholder="Street*">
+                                  <div class="validation-error" *ngIf="addressFormControls.street.errors?.required && (IsaddressformSubmit||addressFormControls.street.touched)">
+                                    Street is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.street.errors?.minlength && (IsaddressformSubmit||addressFormControls.street.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.street.errors?.maxlength && (IsaddressformSubmit||addressFormControls.street.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="city" placeholder="City*">
+                                  <div class="validation-error" *ngIf="addressFormControls.city.errors?.required && (IsaddressformSubmit||addressFormControls.city.touched)">
+                                    City is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.city.errors?.minlength && (IsaddressformSubmit||addressFormControls.city.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.city.errors?.maxlength && (IsaddressformSubmit||addressFormControls.city.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="district" placeholder="District*">
+                                  <div class="validation-error" *ngIf="addressFormControls.district.errors?.required && (IsaddressformSubmit||addressFormControls.district.touched)">
+                                    District is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.district.errors?.minlength && (IsaddressformSubmit||addressFormControls.district.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.district.errors?.maxlength && (IsaddressformSubmit||addressFormControls.district.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="country" placeholder="Country*">
+                                  <div class="validation-error" *ngIf="addressFormControls.country.errors?.required && (IsaddressformSubmit||addressFormControls.country.touched)">
+                                    Country is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.country.errors?.minlength && (IsaddressformSubmit||addressFormControls.country.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.country.errors?.maxlength && (IsaddressformSubmit||addressFormControls.country.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="postcode" placeholder="Postcode*">
+                                  <div class="validation-error" *ngIf="addressFormControls.postcode.errors?.required && (IsaddressformSubmit||addressFormControls.postcode.touched)">
+                                    Postcode is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.postcode.errors?.minlength && (IsaddressformSubmit||addressFormControls.postcode.touched)">
+                                    Postcode must be 6 digit.
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.postcode.errors?.maxlength && (IsaddressformSubmit||addressFormControls.postcode.touched)">
+                                    Postcode must be 6 digit.
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressFormControls.postcode.errors?.pattern && (IsaddressformSubmit||addressFormControls.postcode.touched)">
+                                    Invalid Postcode
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="aa-checkout-single-bill">
+                                  <select formControlName="addresstype">
+                                    <option disabled="disabled" value="">-- Select Address type  --</option>
+                                    <option value="1">Home (7am to 9pm delivery)</option>
+                                    <option value="2">Office/Commercial (10 AM - 5 PM delivery)</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="addressFormControls.addresstype.errors?.required && (IsaddressformSubmit||addressFormControls.addresstype.touched)">
+                                    Address Type is required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-2">
+                                <input type="submit" (click)="onAddressSubmit()" *ngIf="btnSubmit" value="{{btnText}}"
+                                  class="aa-browse-btn">
+                              </div>
+                              <div class="col-md-2">
+                                <input type="submit" (click)="onCancelAddress()" *ngIf="btnCancel" value="Cancel" class="aa-browse-btn">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Billing Address -->
+                    <div class="panel panel-default aa-checkout-billaddress">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseBilling">
+                            Billing Address
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseBilling" class="panel-collapse collapse {{panelBillingAddress}}">
+                        <div class="panel-body">
+                          <form *ngIf="frmAddressBillingDD" [formGroup]="placeOrderForm">
+                            <div class="row">
+                              <div class="col-md-10">
+                                <div class="aa-checkout-single-bill">
+                                  <select formControlName="billingaddressid" (change)="onChangeBillingGetAddress($event.target.value)">
+                                    <option disabled="disabled" value="">--Select Billing Address --</option>
+                                    <option *ngFor="let address of CustomerAddresses" [value]="address.id">{{address.nameofaddress}}</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="placeOrderFormControls.billingaddressid.errors?.required && (IsplaceOrderFormformSubmit||placeOrderFormControls.billingaddressid.touched)">
+                                    Billing Address is required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-2">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="button" value="Add New" *ngIf="btnAddNewAddressBilling" (click)="onAddNewBillingAddress()"
+                                    class="aa-browse-btn">
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                          <form [formGroup]="addressBillingForm">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="nameofaddress" placeholder="Name Of Address*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.nameofaddress.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.nameofaddress.touched)">
+                                    Name Of Address is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.nameofaddress.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.nameofaddress.touched)">
+                                    Minimum 4 to 50 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.nameofaddress.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.nameofaddress.touched)">
+                                    Minimum 4 to 50 characters required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="name" placeholder="Name*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.name.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.name.touched)">
+                                    Name is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.name.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.name.touched)">
+                                    Name must contain 4 to 25 letters
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.name.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.name.touched)">
+                                    Name must contain 4 to 25 letters
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.name.errors?.pattern && (IsaddressBillingformSubmit||addressBillingFormControls.name.touched)">
+                                    Invalid Name
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="tel" formControlName="mobile" placeholder="Mobile*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.mobile.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.mobile.touched)">
+                                    Mobile is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.mobile.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.mobile.touched)">
+                                    Mobile Number must be 10 digit.
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.mobile.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.mobile.touched)">
+                                    Mobile Number must be 10 digit.
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.mobile.errors?.pattern && (IsaddressBillingformSubmit||addressBillingFormControls.mobile.touched)">
+                                    Invalid Number
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="property" placeholder="Appartment/Company, Suite etc.*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.property.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.property.touched)">
+                                    Appartment/Company, Suite etc. is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.property.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.property.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.property.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.property.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="street" placeholder="Street*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.street.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.street.touched)">
+                                    Street is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.street.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.street.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.street.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.street.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="city" placeholder="City*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.city.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.city.touched)">
+                                    City is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.city.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.city.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.city.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.city.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="district" placeholder="District*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.district.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.district.touched)">
+                                    District is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.district.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.district.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.district.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.district.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="country" placeholder="Country*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.country.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.country.touched)">
+                                    Country is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.country.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.country.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.country.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.country.touched)">
+                                    Minimum 4 to 100 characters required
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="aa-checkout-single-bill">
+                                  <input type="text" formControlName="postcode" placeholder="Postcode*">
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.postcode.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.postcode.touched)">
+                                    Postcode is required
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.postcode.errors?.minlength && (IsaddressBillingformSubmit||addressBillingFormControls.postcode.touched)">
+                                    Postcode must be 6 digit.
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.postcode.errors?.maxlength && (IsaddressBillingformSubmit||addressBillingFormControls.postcode.touched)">
+                                    Postcode must be 6 digit.
+                                  </div>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.postcode.errors?.pattern && (IsaddressBillingformSubmit||addressBillingFormControls.postcode.touched)">
+                                    Invalid Postcode
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="aa-checkout-single-bill">
+                                  <select formControlName="addresstype">
+                                    <option disabled="disabled" value="">-- Select Address type  --</option>
+                                    <option value="1">Home (7am to 9pm delivery)</option>
+                                    <option value="2">Office/Commercial (10 AM - 5 PM delivery)</option>
+                                  </select>
+                                  <div class="validation-error" *ngIf="addressBillingFormControls.addresstype.errors?.required && (IsaddressBillingformSubmit||addressBillingFormControls.addresstype.touched)">
+                                    Address Type is required
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-2">
+                                <input type="submit" (click)="onAddressBillingSubmit()" *ngIf="btnBillingSubmit" value="{{btnBillingText}}"
+                                  class="aa-browse-btn">
+                              </div>
+                              <div class="col-md-2">
+                                <input type="submit" (click)="onCancelBillingAddress()" *ngIf="btnBillingCancel" value="Cancel"
+                                  class="aa-browse-btn">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Coupon section -->
+                    <div class="panel panel-default aa-checkout-coupon">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Have a Coupon?
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <input type="text" placeholder="Coupon Code" class="aa-coupon-code">
+                          <input type="submit" value="Apply Coupon" class="aa-browse-btn">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="checkout-right">
+                  <div *ngIf="!disablePaymentButton">
+                    <h4>Payment Method</h4>
+                    <div class="aa-payment-method">
+                      <label><input type="radio" name="optionsRadios" (change)="Gateway($event)" checked> Payment
+                        Gateway </label>
+                      <label><input type="radio" name="optionsRadios" (change)="Direct($event)"> Direct Pay </label>
+                      <div *ngIf="gateway">
+                        <form ngNoForm method='post' action='{{PAYTMURL}}'>
+                          <table>
+                            <tbody>
+                              <input type='hidden' name='MID' value='{{MID}}'>
+                              <input type='hidden' name='WEBSITE' value='{{WEBSITE}}'>
+                              <input type='hidden' name='ORDER_ID' value='{{ORDER_ID}}'>
+                              <input type='hidden' name='CUST_ID' value='{{CUST_ID}}'>
+                              <input type="hidden" name="MOBILE_NO" value="{{MOBILE_NO}}">
+                              <input type="hidden" name="EMAIL" value="{{EMAIL}}">
+                              <input type='hidden' name='INDUSTRY_TYPE_ID' value='{{INDUSTRY_TYPE_ID}}'>
+                              <input type='hidden' name='CHANNEL_ID' value='{{CHANNEL_ID}}'>
+                              <input type='hidden' name='TXN_AMOUNT' value='{{TXN_AMOUNT}}'>
+                              <input type='hidden' name='CALLBACK_URL' value='{{CALLBACK_URL}}'>
+                              <input type='hidden' name='CHECKSUMHASH' value='{{CHECKSUM}}'>
+                            </tbody>
+                          </table>
+                          <input type="submit" value="Make Payment" class="aa-browse-btn">
+                        </form>
+                      </div>
+                      <div *ngIf="direct">
+                        <h4>Bank & Order Details</h4>
+                        <div class="aa-order-summary-area">
+                            <p style="color: blue">{{ORDER_ID}}</p>
+                          <table class="table table-responsive">
+                            <tr>
+                              <th>Bank</th>
+                              <td>SBI</td>
+                            </tr>
+                            <tr>
+                              <th>A/C</th>
+                              <td>37761497092</td>
+                            </tr>
+                            <tr>
+                              <th>Name</th>
+                              <td>KONNAK ENGG</td>
+                            </tr>
+                            <tr>
+                              <th>IFSC</th>
+                              <td>SBININBB456</td>
+                            </tr>
+                          </table>
+                          <input type="submit" value="Submit" (click)="DirectPayment()" class="aa-browse-btn">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <h4>Order Summary</h4>
+                    <div class="aa-order-summary-area aa-payment-method">
+                      <table class="table table-responsive">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let product of CheckoutProducts">
+                            <td *ngIf="product.dayCount == 0">{{ product.name }} <span style="color:#ff6666"> -></span>
+                              <strong>₹ {{product.cost}} x {{ product.quantity }} </strong>
+                              <p style="color: blue " *ngIf="product.type == 1">
+                                <font size="1">(Bulk/Custom)</font>
+                              </p>
+                            </td>
+                            <td *ngIf="product.dayCount != 0">{{ product.name }} <font size="1">({{ product.dayCount
+                                }}days)</font><span style="color:#ff6666"> -></span><strong> ₹ {{product.cost}} x {{
+                                product.quantity }} </strong>
+                              <p *ngIf="product.dayCount != 0">
+                                <font size="1">({{ product.fromDate }} To {{ product.toDate }})</font>
+                              </p>
+                              <p style="color: blue " *ngIf="product.type == 1">
+                                <font size="1">(Bulk/Custom)</font>
+                              </p>
+
+                            </td>
+                            <td *ngIf="product.dayCount != 0">₹ {{ product.cost * product.quantity * product.dayCount
+                              }}</td>
+                            <td *ngIf="product.dayCount == 0">₹ {{ product.cost * product.quantity}}</td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th>Subtotal</th>
+                            <td>₹ {{cartTotal}}</td>
+                          </tr>
+                          <tr>
+                            <th>Tax</th>
+                            <td>₹ 0</td>
+                          </tr>
+                          <tr>
+                            <th>Total</th>
+                            <td><strong>₹ {{cartTotal}}</strong></td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                      <input type="submit" *ngIf="disablePaymentButton" value="Place Order" (click)="PlaceOrder()"
+                        class="aa-browse-btn">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

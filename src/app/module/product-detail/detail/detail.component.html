@@ -1,0 +1,463 @@
+<section id="aa-product-details" *ngIf="product">
+   <div class="container-fluid">
+      <div class="row mt-25">
+         <div class="col-md-9 col-xs-12">
+            <div class="aa-product-details-content">
+               <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                     <div class="share-product">
+                        <div class="dropdown">
+                           <a><p class="dropbtn"><img src="../../../../assets/img/share.svg" width="55"> </p></a>
+                            <div class="dropdown-content text-left">
+                                <a href="javascript:void(0)" (click)="onShare('https://www.facebook.com/sharer.php?u=https://dooyd.com/')"><img src="../../../../assets/img/facebook.svg" width="20" /> <span>Facebook</span></a>
+                                <a  href="javascript:void(0)" (click)="onShare('https://twitter.com/share?url=https://dooyd.com/')"><img src="../../../../assets/img/twitter.svg" width="20" /> <span>Twitter</span></a>
+                                <a href="javascript:void(0)" (click)="onShare('https://www.linkedin.com/sharing/share-offsite/?url=https://dooyd.com/')"><img src="../../../../assets/img/linkedin.svg" width="20" /> <span>Linkedin</span></a>
+                            </div>
+                          </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="float-right">
+                     <!-- <div class="blog-single-social">
+                        
+                        <a href="javascript:void(0)"
+                           (click)="onShare('https://www.facebook.com/sharer.php?u=https://dooyd.com/')"><i
+                              class="fa fa-facebook"></i></a>
+                        <a href="javascript:void(0)"
+                           (click)="onShare('https://twitter.com/share?url=https://dooyd.com/')"><i
+                              class="fa fa-twitter"></i></a>
+                        <a href="javascript:void(0)"
+                           (click)="onShare('https://www.linkedin.com/sharing/share-offsite/?url=https://dooyd.com/')"><i class="fa fa-linkedin"></i></a>
+                     </div> -->
+                  </div>
+                  <!-- Modal view slider -->
+                  <div class="col-md-5 col-sm-5 col-xs-12">
+                     <div class="aa-product-view-slider">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                           <ol class="carousel-indicators">
+                              <li *ngIf="product.productImage?.length  >= 1" data-target="#myCarousel" data-slide-to="0"
+                                 class="active">
+                                 <span class="indicator" (click)="switchSlide(0)">
+                                    <img src="{{product.productImage[0].fileUrl}}" alt="third slide"
+                                       style="display: block; width: 100%;">
+                                 </span>
+                              </li>
+                              <li *ngIf="product.productImage?.length  >= 2" data-target="#myCarousel"
+                                 data-slide-to="1">
+                                 <span class="indicator" (click)="switchSlide(1)">
+                                    <img src="{{product.productImage[1].fileUrl}}" alt="third slide"
+                                       style="display: block; width: 100%;">
+                                 </span>
+                              </li>
+                              <li *ngIf="product.productImage?.length  >= 3" data-target="#myCarousel"
+                                 data-slide-to="2">
+                                 <span class="indicator" (click)="switchSlide(2)">
+                                    <img src="{{product.productImage[2].fileUrl}}" alt="third slide"
+                                       style="display: block; width: 100%;">
+                                 </span>
+                              </li>
+                              <li *ngIf="product.productImage?.length  >= 4" data-target="#myCarousel"
+                                 data-slide-to="3">
+                                 <span class="indicator" (click)="switchSlide(3)">
+                                    <img src="{{product.productImage[3].fileUrl}}" alt="fourth slide"
+                                       style="display: block; width: 100%;">
+                                 </span>
+                              </li>
+                           </ol>
+                           <div class="carousel-inner xs-mb-80">
+                              <div class="item active" *ngIf="product.productImage?.length  >= 1">
+                                 <div class="img-zoom-container" (mouseleave)="hideResult()"
+                                    (mouseenter)="imageZoom('myimage', 'myresult', $event);">
+                                    <img id="myimage" src="{{product.productImage[0].fileUrl}}" alt="first slide"
+                                       style="display: block; width: 100%;">
+                                 </div>
+                              </div>
+                              <div class="item" *ngIf="product.productImage?.length  >= 2">
+                                 <div class="img-zoom-container" (mouseleave)="hideResult()"
+                                    (mouseenter)="imageZoom('myimage2', 'myresult', $event);">
+                                    <img id="myimage2" src="{{product.productImage[1].fileUrl}}" alt="second slide"
+                                       style="display: block; width: 100%;">
+                                 </div>
+                              </div>
+                              <div class="item" *ngIf="product.productImage?.length  >= 3">
+                                 <div class="img-zoom-container" (mouseleave)="hideResult()"
+                                    (mouseenter)="imageZoom('myimage3', 'myresult', $event);">
+                                    <img id="myimage3" src="{{product.productImage[2].fileUrl}}" alt="third slide"
+                                       style="display: block; width: 100%;">
+                                 </div>
+                              </div>
+                              <div class="item" *ngIf="product.productImage?.length  >= 4">
+                                 <div class="img-zoom-container" (mouseleave)="hideResult()"
+                                    (mouseenter)="imageZoom('myimage4', 'myresult', $event);">
+                                    <img id="myimage4" src="{{product.productImage[3].fileUrl}}" alt="fourth slide"
+                                       style="display: block; width: 100%;">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="myresult" class="img-zoom-result" [class.show]="showresult"></div>
+                     </div>
+                     <div class="aa-prod-view-bottom" *ngIf="product && product.id">
+                        <a *ngIf="product.category !='Design Engineering'" (click)="addToCart(product.id)"
+                           class="cart-bag-btn" href="javascript:void(0)">
+                           <img src="../../../../assets/img/shopping-bag.svg" width="20" alt="Shopping Bag" />
+                           <span>ADD TO BAG</span>
+                        </a>
+                        <!-- <a *ngIf="product.category =='Procurement' " (click)="addToWishList(product.id)" class="wishlist-btn"
+              href="javascript:void(0)">
+              <img src="../../../../assets/img/bookmark.svg"  width="15" alt="Wishlist" />
+              <span>ADD TO WISHLIST</span>
+              </a> -->
+                     </div>
+                  </div>
+                  <!-- Modal view content -->
+                  <div class="col-md-7 col-sm-7 col-xs-12">
+                     <div class="pdp-price-info">
+                        <h1 class="pdp-title">{{product.name}}
+                           <span class="availability-box" *ngIf="product && product.id" [ngSwitch]="product.category">
+                              <span *ngSwitchCase="'Procurement'">
+                                 <span class="in-stock" *ngIf="product.isAvailable">In stock</span>
+                                 <span class="outof-stock" *ngIf="!product.isAvailable">Out of stock</span>
+                              </span>
+                              <span *ngSwitchCase="'Design Engineering'" class="in-stock">Consulting</span>
+                              <span *ngSwitchCase="'Construction'" class="in-stock">Contracting</span>
+                              <span *ngSwitchCase="'Rental Equipments'" class="in-stock">Rent</span>
+                           </span>
+                        </h1>
+                        <h1 class="pdp-name pdp-bb1">{{product.category}}</h1>
+                        <p class="pdp-discount-container">
+                           <strong class="pdp-price">₹ {{ product.price }}</strong>
+                           <span class="pdp-mrp">
+                              <del>₹ {{product.cutPrice }}</del>
+                           </span>
+                           <span class="pdp-discount">({{(100-((product.price/product.cutPrice)*100)).toFixed(2)}}%
+                              OFF)</span>
+                        </p>
+                        <p class="pdp-selling-price">
+                           <span class="pdp-vatInfo">
+                              No additional tax ; shipping charge may apply
+                           </span>
+                        </p>
+                     </div>
+                     <div class="index-sizeFitDesc">
+                        <h4 class="index-sizeFitDescTitle">Delivery Options <span>
+                              <img src="../../../../assets/img/delivery-truck.svg" width="25" alt="Delivery Truck" />
+                           </span></h4>
+                        <div class="index-tableContainer">
+                           <div class="index-row">
+                              <div class="index-rowKey">Delivery Availability :</div>
+                              <div class="index-rowValue">
+                                 <a href="javascript:void(0)" *ngFor="let loc of product.productSupplyLocation">
+                                    {{loc.location}},
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="index-row" *ngIf="product.category=='Procurement'">
+                              <div class="index-rowKey"> Shipping Price : </div>
+                              <div class="index-rowValue">₹ {{product.shippingCost}}</div>
+                           </div>
+                           <div class="index-row">
+                              <div class="index-rowKey">Delivery Time : </div>
+                              <div class="index-rowValue">{{product.delivery}} Days</div>
+                           </div>
+                           <div class="index-row">
+                              <div class="index-rowKey">Supply/Work capability : </div>
+                              <div class="index-rowValue">{{product.capability}} unit/Month</div>
+                           </div>
+                           <div class="index-row">
+                              <div class="index-rowKey">Category : </div>
+                              <div class="index-rowValue">{{product.category}}</div>
+                           </div>
+                           <div class="index-row">
+                              <div class="index-rowKey">Seller :</div>
+                              <div class="index-rowValue">
+                                 <a style="color: #ff6666"
+                                    routerLink="/product-filter/seller/{{product.sellerName}}">{{product.sellerName}}</a>
+                              </div>
+                           </div>
+                           <div *ngIf="product.category != 'Procurement' && product.category != 'Design Engineering'"
+                              class="index-row">
+                              <div class="index-rowKey">Choose Date :</div>
+                              <div class="index-rowValue custom-datepicker">
+                                 <div>
+                                    <input type="text" [showDropdowns]="true" matInput ngxDaterangepickerMd
+                                       placeholder="Choose From & To date"
+                                       [locale]="{applyLabel: 'okay',separator: ' To ', cancelLabel: 'Cancel', format: 'DD-MM-YYYY'}"
+                                       startKey="start" endKey="end" [(ngModel)]="FromToDate" />
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="chat-box" (click)="chat(product.id)" href="javascript:void(0)">
+                        <img src="../../../../assets/img/chat.svg" alt="Chat Box" width="25" />
+                        <span>Chat Now</span>
+                     </a>
+                     <div class="aa-product-view-content">
+                        <p>{{product.shortDescription}}</p>
+                     </div>
+                     <div class="bulk-btn">
+                        <a href="#" data-toggle="modal" data-target="#mup-view-modal">Send Enquiry</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="aa-product-details-area">
+               <div class="aa-product-details-bottom">
+                  <ul class="nav nav-tabs" id="myTab2">
+                     <li><a href="#description" data-toggle="tab">Description</a></li>
+                     <li><a href="#review" data-toggle="tab">Reviews</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                     <div class="tab-pane fade in active" id="description">
+                        <div class="aa-product-review-area">
+                           <ul class="aa-review-nav">
+                              <li>
+                                 <div class="media">
+                                    <div class="media-body">
+                                       <h4 style="color:#ff6666" class="media-heading"><strong>Description</strong></h4>
+                                       <div [innerHTML]="product.description"></div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           <ul *ngFor="let desc of _productDescription" class="aa-review-nav">
+                              <li *ngIf="desc.description != null">
+                                 <div class="media">
+                                    <div class="media-body">
+                                       <h4 style="color:#ff6666" class="media-heading"><strong>{{desc.title}}</strong>
+                                       </h4>
+                                       <div [innerHTML]="desc.description"></div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="tab-pane fade " id="review">
+                        <div class="aa-product-review-area">
+                           <h3>Reviews for {{product.name}}</h3>
+                           <div class="aa-your-rating">
+                              <p>Your Rating</p>
+                              <star-rating value="5" checkedcolor="#ff6666" uncheckedcolor="black" size="24px"
+                                 readonly="false" (rate)="onRate($event)"></star-rating>
+                           </div>
+                           <form [formGroup]="ReviewForm" (ngSubmit)="AddProductReview()" class="aa-review-form">
+                              <div class="form-group">
+                                 <label for="message">Your Review</label>
+                                 <textarea formControlName="comment" class="form-control" id="message"></textarea>
+                              </div>
+                              <button type="submit" [disabled]="!ReviewForm.valid"
+                                 class="btn btn-default aa-review-submit">Submit</button>
+                           </form>
+                           <hr>
+                           <ul class="aa-review-nav">
+                              <li *ngFor="let r of ProductReview">
+                                 <div class="media">
+                                    <div class="media-left">
+                                       <a href="javascript:void(0)">
+                                          <img class="media-object"
+                                             src="https://devdooydstorage.blob.core.windows.net/dooyd/girl.png"
+                                             alt="girl image">
+                                       </a>
+                                    </div>
+                                    <div class="media-body">
+                                       <h4 class="media-heading"><strong>{{r.name}}</strong> -
+                                          <span>{{r.createdDate  | date: "MMM dd, yyyy"}}</span></h4>
+                                       <div class="aa-product-rating">
+                                          {{r.rating}}<span class="fa fa-star"></span>
+                                       </div>
+                                       <p>{{r.comments}}</p>
+                                    </div>
+                                 </div>
+                              </li>
+                              <form *ngIf="ProductReview?.length  != 0" class="aa-review-form">
+                                 <button [disabled]="!btnViewMore" type="submit" (click)="ReviewLoadMore()"
+                                    class="btn btn-default aa-review-submit">View More</button>
+                              </form>
+                           </ul>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- quick view modal -->
+               <div class="modal fade" id="mup-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-body">
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           <h4>Request for Bulk / Custom Order</h4>
+                           <hr>
+                           <form class="aa-login-form" [formGroup]="mupForm">
+                              <label for="">Product Name<span>*</span></label>
+                              <input type="text" disabled formControlName="productName">
+                              <label for="">Seller Name<span>*</span></label>
+                              <input type="text" disabled formControlName="sellerName">
+                              <label for="">Quantity<span>*</span></label>
+                              <input type="text" formControlName="quantity" placeholder="Quantity you want">
+                              <div class="validation-error"
+                                 *ngIf="mupFormControls.quantity.errors?.required && (IsformSubmit||mupFormControls.quantity.touched)">
+                                 Quantity is required
+                              </div>
+                              <div
+                                 *ngIf="product.category != 'Procurement' && product.category != 'Design Engineering'">
+                                 <label for="">Date<span>*</span></label>
+                                 <input type="text" [showDropdowns]="true" matInput ngxDaterangepickerMd
+                                    placeholder="Choose From & To date"
+                                    [locale]="{applyLabel: 'okay',separator: ' To ', cancelLabel: 'Cancel', format: 'DD-MM-YYYY'}"
+                                    startKey="start" endKey="end" formControlName="mupFromToDate"
+                                    [(ngModel)]="mupFromToDate" />
+                              </div>
+                              <label for="">Description<span>*</span></label>
+                              <textarea formControlName="description" class="form-control" rows="3"
+                                 placeholder="Description"></textarea>
+                              <div class="validation-error"
+                                 *ngIf="mupFormControls.description.errors?.required && (IsformSubmit||mupFormControls.description.touched)">
+                                 Quantity is required
+                              </div>
+                              <br>
+                              <div class="aa-prod-view-bottom">
+                                 <a href="javascript:void(0)" (click)="onSubmit()" class="aa-add-to-cart-btn">Send
+                                    request</a>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+               <!-- / quick view modal -->
+            </div>
+         </div>
+         <div class="col-md-3 col-xs-12">
+            <div class="module-companyCardIntegrated">
+               <div class="widget-supplier-card company-card-integrated  has-ta ">
+                  <div class="company-name-container">
+                     <!-- <img src="//sc01.alicdn.com/kf/HTB1keJVavjsK1Rjy1Xa762ispXa0.png" alt="avatar-placeholder" class="company-avatar"> -->
+                     <a class="company-name " href="" target="_blank"
+                        title="Estor Technology Co., Ltd.">{{product.sellerName}}</a>
+                  </div>
+                  <div class="card-supplier">
+                     <a href="javascript:;" class="verify-info" target="_blank">
+                        <span class="join-year">
+                           <span class="value">&nbsp;&nbsp;&nbsp;9</span>
+                           <span class="unit">YRS</span>
+                        </span>
+                     </a>
+                     <i class="indian-flag"></i><span class="register-country">IN</span>
+                  </div>
+                  <div class="card-icons">
+                     <div class="icon-item">
+                        <a>
+                           <i class="svg-card-icon svg-card-icon-gold"></i><span>Gold Supplier</span>
+                        </a>
+                     </div>
+                     <div class="icon-item">
+                        <a>
+                           <i class="svg-card-icon svg-card-icon-ta"></i><span>Trade Assurance</span></a>
+                     </div>
+                     <div class="icon-item">
+                        <a><i class="svg-card-icon svg-card-icon-oc"></i><span>Onsite Check</span></a>
+                     </div>
+                  </div>
+                  <div class="transaction-info">
+                     <div style="margin-bottom: 10px;margin-top: 18px;">
+                        <a class="score" href="" target="_blank">
+                           <span class="score-big">4.4</span>
+                           <span class="score-common">/5</span>
+                        </a>
+                        <div class="review-level" data-module="companyCardIntegrated">
+                           <div data-reactroot="">
+                              <a class="level-text" href="">Satisfied</a>
+                              <a class="reviews">
+                                 202 Reviews<i class="fa fa-chevron-down"></i>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <table>
+                     <tbody>
+                        <tr class="card-info-item">
+                           <th>Transaction Level:</th>
+                           <td>
+                              <a>
+                                 <i class="star-level-one"></i>
+                                 <i class="star-level-one"></i>
+                                 <i class="star-level-half"></i>
+                              </a>
+                           </td>
+                        </tr>
+                        <tr id="transactionAmountTrigger" class="card-info-item">
+                           <th>
+                              <b>870</b> Transactions
+                           </th>
+                           <td>
+                              <span>90,000+</span>
+                              <div class="ui2-balloon ui2-balloon-tl ui2-shadow-normal transaction-section-tip">
+                                 The supplier’s transactions conducted via Alibaba.com in the past 6 months.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="card-info-item">
+                           <th>
+                              <a href="">Response Time</a>
+                           </th>
+                           <td>
+                              <a href="">
+                                 <b class="util-left">&lt;24h</b>
+                              </a>
+                           </td>
+                        </tr>
+                        <tr class="card-info-item">
+                           <th>
+                              <a href="">Response Rate</a>
+                           </th>
+                           <td>
+                              <a class="performance-value-wrap util-clearfix" href="">
+                                 <b class="util-left">92.7%</b>
+                              </a>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div class="card-footer">
+                     <a>View Company Profile</a>
+                  </div>
+               </div>
+            </div>
+            <div class="module-companyCardIntegrated like-product-box mt-25">
+               <h5>You May Interested In</h5>
+               <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="400"
+                  [infiniteScrollDisabled]="false" (scrolled)="LoadMore()">
+                  <div class="media like-border-bottom" *ngFor="let p of Products">
+                     <div class="media-left">
+                        <a href="javascript:void(0)">
+                           <img (click)="ChangeProduct(p.name ,p.id )" class="media-object" src="{{p.imageUrl}}"
+                              width="60" width="60" alt="Product image">
+                        </a>
+                     </div>
+                     <div class="media-body">
+                        <a href="javascript:void(0)" (click)="ChangeProduct(p.name ,p.id )">
+                           <h4 class="media-heading">{{ p.name }}</h4>
+                           <p class="mb-0">₹ {{ p.cost }}</p>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+
+         </div>
+      </div>
+   </div>
+</section>

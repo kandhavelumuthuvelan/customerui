@@ -1,0 +1,138 @@
+<!-- Categories -->
+<section class="aa-cartbox">
+
+
+  <div class="cd-dropdown-wrapper" #dropMenu>
+    <a #triggerClick id="cd-dropdown-trigger" class="cd-dropdown-trigger"><i
+        class="fa fa-bars align-middle mr-3"></i><span class="align-middle xs-hidden">Categories</span></a>
+    <nav #subDropdown class="cd-dropdown">
+      <h2>DooyD.com</h2>
+      <a href="" class="cd-close">Close</a>
+      <ul class="cd-dropdown-content">
+        <li class="has-children" *ngFor="let menuList of menuGroup">
+          <a (click)="onCategory(menuList.name)">{{menuList.name}}</a>
+          <ul class="cd-secondary-dropdown is-hidden">
+            <li class="go-back"><a>Menu</a></li>
+            <!-- <li class="see-all"><a>All Categories</a></li> -->
+            <li class="has-children"
+              [ngClass]="{'heightAuto':firstSubmenu.subMenu.length<5, 'heightIncrease':firstSubmenu.subMenu.length>6}"
+              *ngFor="let firstSubmenu of menuList.subMenu;let i = index;">
+              <a (click)="onDiscipline(firstSubmenu.name)">{{firstSubmenu.name}}</a>
+              <ul class="is-hidden">
+                <li class="go-back"><a>{{firstSubmenu.name}}</a></li>
+                <!-- <li class="see-all"><a>All Accessories</a></li> -->
+                <li *ngFor="let secondSubmenu of firstSubmenu.subMenu">
+                  <a href="javascript: void(0);" (click)="onProduct(secondSubmenu.name)">{{secondSubmenu.name}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul> <!-- .cd-secondary-dropdown -->
+        </li> <!-- .has-children -->
+      </ul> <!-- .cd-dropdown-content -->
+    </nav> <!-- .cd-dropdown -->
+  </div>
+
+  <!-- menu -->
+  <!-- <div id="menu" class="d-none">
+    <div class="menu-area">
+      <div class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+          <li><a href="#" class="aa-cart-link">
+              <span class="fa fa-align-left"></span>
+              <span class="aa-cart-notify">Categories</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Procurement<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Mechanical<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li ><a href="javascript: void(0);" (click)="onSector('Oil and Gas')">Oil and Gas</a></li>
+                        <li><a href="javascript: void(0);" (click)="onSector('Residential projects')">Residential projects</a></li>
+                        <li><a href="javascript: void(0);" (click)="onSector('Industrial')" >Industrial</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">HSE<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="javascript: void(0);" (click)="onSector('Residential')">Residential</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Infrastructure<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="javascript: void(0);" (click)="onSector('Residential projects')">Residential projects</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+              </li>
+              <li><a href="#">Design & Engineering<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Mechanical<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li ><a href="javascript: void(0);" (click)="onSector('Oil and Gas')">Oil and Gas</a></li>
+                        <li><a href="javascript: void(0);" (click)="onSector('Residential projects')">Residential projects</a></li>
+                        <li><a href="javascript: void(0);" (click)="onSector('Industrial')" >Industrial</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">HSE<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="javascript: void(0);" (click)="onSector('Residential')">Residential</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Infrastructure<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="javascript: void(0);" (click)="onSector('Residential projects')">Residential projects</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+              </li>
+              <li><a href="#">Construction<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Mechanical<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a routerLink="/sector/Oil and Gas">Oil and Gas</a></li>
+                        <li><a routerLink="/sector/Residential projects">Residential projects</a></li>
+                        <li><a routerLink="/sector/Industrial">Industrial</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">HSE<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a routerLink="/sector/Residential">Residential</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Infrastructure<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a routerLink="/sector/Residential projects">Residential projects</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+              </li>
+              <li><a href="#">Rental Equipments<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Mechanical<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a routerLink="/sector/Oil and Gas">Oil and Gas</a></li>
+                        <li><a routerLink="/sector/Residential projects">Residential projects</a></li>
+                        <li><a routerLink="/sector/Industrial">Industrial</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">HSE<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a routerLink="/sector/Residential">Residential</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Infrastructure<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a routerLink="/sector/Residential projects">Residential projects</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+              </li> 
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+  <!-- / menu -->
+</section>
+<!-- /Categories -->

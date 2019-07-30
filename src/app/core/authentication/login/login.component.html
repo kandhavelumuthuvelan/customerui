@@ -1,0 +1,70 @@
+<div class="modal fade supplier-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="logo text-center">
+          <a>
+            <img src="https://devdooydstorage.blob.core.windows.net/dooyd/dooydc.png" alt="Logo" />
+          </a>
+        </div>
+        <h1>Find the product & service with the lower price</h1>
+        <form [formGroup]="leadForm">
+          <div class="form-group">
+            <input type="text" formControlName="details" class="form-control"
+              placeholder="Enter Your Product or Service Requirement">
+            <div class="validation-error"
+              *ngIf="leadFormControls.details.errors?.required && (IsLeadformSubmit||leadFormControls.details.touched)">
+              Product or Service detail is required
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="mobile" class="form-control" placeholder="Enter Your Mobile Number">
+            <div class="validation-error"
+              *ngIf="leadFormControls.mobile.errors?.required && (IsLeadformSubmit||leadFormControls.mobile.touched)">
+              Mobile No is required
+            </div>
+          </div>
+          <div>
+            <button (click)="onLeadSubmit()" class="w-100 sup-btn">FIND NOW</button>
+          </div>
+          <div class="text-center no-thank">
+            <a href="javascript:void(0)" (click)="Cancel()">NO, THANKS</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Login</h4>
+        <form class="aa-login-form" name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <label for="">Mobile or Email address<span>*</span></label>
+          <input type="text" formControlName="username" placeholder="mobile or email">
+          <div class="validation-error"
+            *ngIf="loginFormControls.username.errors?.required && (IsformSubmit||loginFormControls.username.touched)">
+            Mobile or Email is required
+          </div>
+          <label for="">Password<span>*</span></label>
+          <input type="password" formControlName="password" placeholder="Password">
+          <div class="validation-error"
+            *ngIf="loginFormControls.password.errors?.required && (IsformSubmit||loginFormControls.password.touched)">
+            Password is required
+          </div>
+          <button class="aa-browse-btn" type="submit">Login</button>
+          <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+          <div class="aa-register-now">
+            Don't have an account?<a href="javascript:void(0)" (click)="registerNow()">Register now!</a>
+          </div>
+          <div class="aa-register-now">
+            Lost your password?<a routerLink="/forgot">Forgot Password!</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

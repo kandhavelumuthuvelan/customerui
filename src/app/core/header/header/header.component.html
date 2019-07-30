@@ -1,0 +1,84 @@
+<header id="aa-header">
+  <!-- start header top  -->
+  <div class="aa-header-top">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-header-top-area top-navbar">
+            <span class="download-app">
+                <a>
+                    <img src="../../../../assets/img/playstore.png"  /> 
+                </a>
+                <a>
+                      <img src="../../../../assets/img/appstore.png" /> 
+                </a>
+            </span>
+            <div class="aa-header-top-right">
+              <ul class="aa-head-top-nav-right">
+                <!-- <li><p><a href="mailto:contactus@dooyd.com"><span class="fa fa-envelope"></span> contactus@dooyd.com</a></p></li>
+                <li><p><a href="javascript:void(0)"><span class="fa fa-phone"></span> 04651-258488</a></p></li>
+                <li><p><a routerLink="/contact" >Contact</a></p></li> -->
+                <li><p><a href="https://seller.dooyd.com">Sell on DooyD</a></p></li>
+                <li><a routerLink="/instant" >Request For Quotation</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / header top  -->
+
+  <!-- start header bottom  -->
+  <div class="aa-header-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-6">
+          <div class="aa-header-bottom-area">
+            <!-- logo  -->
+            <div class="aa-logo">
+              <!-- Text based logo -->
+              <!-- <a routerLink="/">
+                <span class="fa fa-shopping-cart"></span>
+                <p><strong>D</strong>ooy<strong>D</strong><span>The Digital Project Solutions</span></p>
+              </a> -->
+              <!-- img based logo -->
+              <a routerLink="/"><img src="https://devdooydstorage.blob.core.windows.net/dooyd/dooydc.png" alt="logo"></a>
+            </div>
+            <!-- / logo  -->
+
+            <!-- cart box -->
+            <!-- <app-quick-cart></app-quick-cart> -->
+            <!-- / cart box -->
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-2 col-xs-6">
+            <app-menu></app-menu>
+        </div>
+        <!-- <div class="col-xs-12 col-sm-6 col-md-3 col-lg-6 clear-xs">
+            <app-search></app-search>
+        </div> -->
+        <div class="col-xs-12 col-sm-7 col-md-5 col-lg-6 clear-xs">
+            <app-search></app-search>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-right">
+          <a *ngIf="!isLoggedIn" href="" class="login-content" id="triggerTest" data-toggle="modal" data-target="#login-modal"><img src="../../../../assets/img/man.png" width="20"> <span style="color: #ff6666">Log In/Sign Up</span></a>
+          <div class="dropdown" *ngIf="isLoggedIn">
+           <a  routerLink="/profile"><p class="dropbtn"><img src="../../../../assets/img/man.png" width="25"> <span class="user-info" style="color: #ff6666">{{user.name}}</span></p></a>
+            <div class="dropdown-content text-left">
+                <a routerLink="/profile" *ngIf="isLoggedIn">Profile</a>
+                <a routerLink="/chat" *ngIf="isLoggedIn">Chat</a>
+                <a routerLink="/cart" *ngIf="isLoggedIn">Cart</a>
+                <a routerLink="/checkout" *ngIf="isLoggedIn">Checkout</a>
+                <a routerLink="/order" *ngIf="isLoggedIn">Order</a>
+                <a routerLink="/mup" *ngIf="isLoggedIn">Enquiry List</a>
+                <a routerLink="#" (click)="logout()">Logout</a>
+            </div>
+          </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- / header bottom  -->
+</header>

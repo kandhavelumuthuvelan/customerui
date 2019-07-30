@@ -1,0 +1,41 @@
+<!-- Blog Archive -->
+<section id="aa-blog-archive">
+  <div class="container-fluid" style="overflow-y: scroll;overflow: hidden;" infiniteScroll [infiniteScrollDistance]="8"
+  [infiniteScrollThrottle]="50" (scrolled)="LoadMore()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-blog-archive-area aa-blog-archive-2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="aa-blog-content">
+                <div class="row">
+                  <div class="col-md-3 col-sm-4" *ngFor="let c of Careers">
+                    <article class="aa-latest-blog-single">
+                      <figure class="aa-blog-img">                    
+                        <a href="javascript:void(0)" routerLink="/career-detail/{{c.id}}" >
+                          <img alt="img" src="https://devdooydstorage.blob.core.windows.net/dev/2019-06-25-04-41-08-144963-BingWallpaper-2018-09-23.jpg">
+                        </a>  
+                          <figcaption class="aa-blog-img-caption">
+                          <span href="#"><i class="fa fa-eye"></i>5K</span>
+                          <a href="#"><i class="fa fa-thumbs-o-up"></i>426</a>
+                          <a href="#"><i class="fa fa-comment-o"></i>20</a>
+                          <span href="#"><i class="fa fa-clock-o"></i>{{c.createdDate | date: "MMM dd, yyyy"}}</span>
+                        </figcaption>                          
+                      </figure>
+                      <div class="aa-blog-info">
+                        <h3 class="aa-blog-title"><a routerLink="/career-detail/{{c.id}}">{{c.title}}</a></h3>
+                        <p>{{c.shortDescription  | slice:0:200}}</p> 
+                        <a class="aa-read-mor-btn"href="javascript:void(0)" routerLink="/career-detail/{{c.id}}">Read more <span class="fa fa-long-arrow-right"></span></a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Blog Archive -->

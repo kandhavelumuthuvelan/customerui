@@ -1,0 +1,128 @@
+<!-- Cart view section -->
+<section id="cart-view">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <a href="javascript:void(0)" (click)="backToOrders();" *ngIf="canLoadDelieryComponent" class="aa-cart-view-btn">
+            Back to Orders
+          </a>
+        </div>
+        <!-- <button class="aa-add-to-cart-btn" >
+          <span class="fa fa-back"></span> Back to Orders</button> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->
+
+<!-- Cart view section -->
+<section id="cart-view" *ngIf="!canLoadDelieryComponent">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <form action="">
+              <div class="table-responsive">
+                <table class="table" *ngIf="OrderProductDetail?.length  != 0" infiniteScroll [infiniteScrollDistance]="2"
+                  [infiniteScrollThrottle]="400" [infiniteScrollDisabled]="false" (scrolled)="LoadMore()">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                      <th>Invoice</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let outer of OrderProductDetail">
+                    <tr *ngFor="let product of outer;let first = first">
+                      <td class="orderId-container" *ngIf="product.status =='TXN_SUCCESS'  && first " colspan="3">
+                        <span>{{product.orderId}}</span>
+                      </td>
+                      <td class="orderId-container" *ngIf="product.status =='TXN_FAILURE'  && first " colspan="3">
+                        <span>{{product.orderId}}</span>
+                      </td>
+                      <td class="orderId-container" *ngIf="product.status =='PENDING'  && first " colspan="3">
+                       <span>{{product.orderId}}</span>
+                      </td>
+                      <!-- <td *ngIf="product.status =='TXN_SUCCESS' && first "></td>
+                          <td *ngIf="product.status =='TXN_SUCCESS' && first "></td>
+                          <td *ngIf="product.status =='TXN_SUCCESS' && first "></td>
+                          <td *ngIf="product.status =='TXN_SUCCESS' && first "></td>
+                          <td *ngIf="product.status =='TXN_SUCCESS' && first "></td>
+                          <td *ngIf="product.status =='TXN_SUCCESS' && first "></td> -->
+                    </tr>
+                    <tr *ngFor="let product of outer;let first = first">
+                      <td><a routerLink="/product-detail/{{ product.productName }}/{{ product.productId }}"><img [src]="product.imageUrl" alt="img"></a></td>
+                      <td><a routerLink="/product-detail/{{ product.productName }}/{{ product.productId }}" class="aa-cart-title product-name">{{product.productName}}</a>
+                        <p *ngIf="product.dayCount != 0">
+                          <font size="1">({{ product.fromDate }} To {{ product.toDate }})</font>
+                        </p>
+                        <p style="color: blue " *ngIf="product.type == 1"><font  size="1">(Bulk/Custom)</font></p>
+                      </td>
+                      <td>₹ {{ product.productCost }}</td>
+                      <td>{{ product.quantity }}
+                        <p *ngIf="product.dayCount != 0">
+                          <font size="1">({{ product.dayCount }}days)</font>
+                        </p>
+                      </td>
+                      <td *ngIf="product.dayCount != 0">₹ {{ product.productCost * product.quantity * product.dayCount
+                        }}</td>
+                      <td *ngIf="product.dayCount == 0">₹ {{ product.productCost * product.quantity}}</td>
+                      <td class="payment-status" *ngIf="product.status =='TXN_SUCCESS'" style="color: green"> Order Placed
+                        ({{product.createdDate | date: "dd MMM yyyy h:mm a"}})</td>
+                      <td class="payment-status" *ngIf="product.status =='TXN_FAILURE'" style="color: red">Payment Failed
+                        ({{product.createdDate | date: "dd MMM yyyy h:mm a"}})</td>
+                      <td class="payment-status" *ngIf="product.status =='PENDING'" style="color: blue">Payment Pending ({{product.createdDate
+                        | date: "dd MMM yyyy h:mm a"}})</td>
+
+                      <td *ngIf="product.status =='TXN_SUCCESS' && !product.delivered && product.confirmed == 0"><a
+                          href="javascript:void(0)" class="aa-add-to-cart-btn" (click)="Track(product.id)">Track</a></td>
+                      <td *ngIf="product.status =='TXN_SUCCESS' && !product.delivered && product.confirmed == 1"><a
+                          href="javascript:void(0)" class="aa-add-to-cart-btn" (click)="Track(product.id)">Track</a></td>
+                      <td *ngIf="product.status =='TXN_SUCCESS' && !product.delivered && product.confirmed == 2"><a
+                          href="javascript:void(0)" class="aa-add-to-cart-btn" (click)="Track(product.id)">Cancelled</a></td>
+                      <td *ngIf="product.status =='TXN_SUCCESS' && product.delivered"><a href="javascript:void(0)"
+                          class="aa-add-to-cart-btn" (click)="Track(product.id)">Delivered</a></td>
+                      <td *ngIf="product.status =='TXN_FAILURE'"> </td>
+                      <td *ngIf="product.status =='PENDING'"> </td>
+
+                      <td *ngIf="product.status =='TXN_SUCCESS' && first " [attr.rowspan]="outer.length"><a
+                          [routerLink]="['/invoice',product.orderId]" class="aa-browse-btn" title="{{product.orderId}}">Invoice</a></td>
+                      <td *ngIf="product.status =='TXN_FAILURE' && first " [attr.rowspan]="outer.length"><a href="javascript:void(0)"
+                          class="aa-browse-btn" (click)="Retry(product.orderId)" title="{{product.orderId}}">Retry</a></td>
+                      <td *ngIf="product.status =='PENDING' && first " [attr.rowspan]="outer.length"><a href="javascript:void(0)"
+                          class="aa-browse-btn" title="{{product.orderId}}">Pending</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div *ngIf="OrderProductDetail?.length  == 0" class="bigContainer1 mt0">
+                  <div class="Ecart">
+                    <h1>Your Order is Empty!</h1>
+                    <img src="https://devdooydstorage.blob.core.windows.net/dooyd/empty-cart.png" alt="empty_cart">
+                    <div class="cart-view-total">
+                      <a routerLink="/" class="aa-cart-view-btn">
+                        Start Shopping
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->
+
+
+<div *ngIf="canLoadDelieryComponent">
+  <app-delivery [OrderID]="orderId" *ngIf="canLoadDelieryComponent"></app-delivery>
+</div>
